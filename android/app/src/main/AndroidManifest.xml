@@ -24,7 +24,7 @@
         </intent>
     </queries>
    <application
-        android:label="glassPRO"
+        android:label="FG glassPRO"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
