@@ -57,22 +57,21 @@ class DashboardState extends State<Dashboard> {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
+        centerTitle: false,
         toolbarHeight: 100,
         elevation: 0,
-        title: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            child: Container(
-                height: 100,
-                width: 120,
-                child: InkWell(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext ctx) => Dashboard()));
-                    },
-                    child: Image.asset('assets/images/Dashlogo.png',
-                        fit: BoxFit.fitWidth)))),
+        title: Container(
+            height: 100,
+            width: 120,
+            child: InkWell(
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext ctx) => Dashboard()));
+                },
+                child: Image.asset('assets/images/Dashlogo.png',
+                    fit: BoxFit.fitWidth))),
         backgroundColor: const Color(0xfff3f3f3),
         iconTheme: IconThemeData(color: Colors.blue),
       ),
@@ -450,7 +449,7 @@ class DashboardState extends State<Dashboard> {
 
 showAlertDialog(BuildContext context) {
   // Create button
-  Widget okButton = FlatButton(
+  Widget okButton = TextButton(
     child: Text("OK"),
     onPressed: () {
       //Navigator.of(context).pop();

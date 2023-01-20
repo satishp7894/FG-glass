@@ -123,7 +123,7 @@ class OrdersState extends State<Orders> {
                     const Color(0xff27a9e1)
                   ])),
             ),
-            //  centerTitle: true,
+             centerTitle: false,
             //leadingWidth: 30,
             title: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
@@ -1043,7 +1043,7 @@ class OrdersState extends State<Orders> {
                                                     vertical: 5),
                                                 alignment:
                                                     Alignment.bottomCenter,
-                                                child: RaisedButton(
+                                                child: MaterialButton(
                                                   onPressed: () {
                                                     Navigator.push(
                                                         context,

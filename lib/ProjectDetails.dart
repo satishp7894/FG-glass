@@ -73,7 +73,7 @@ class ProjectDetailsState extends State<ProjectDetails> {
                   const Color(0xff27a9e1)
                 ])),
           ),
-          //  centerTitle: true,
+          centerTitle: false,
           //leadingWidth: 30,
 
           title: Padding(
@@ -347,7 +347,7 @@ class ProjectDetailsState extends State<ProjectDetails> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    RaisedButton(
+                    MaterialButton(
                       elevation: 10,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -367,7 +367,7 @@ class ProjectDetailsState extends State<ProjectDetails> {
                               fontFamily: 'Lato',
                               fontWeight: FontWeight.bold)),
                     ),
-                    RaisedButton(
+                    MaterialButton(
                       elevation: 10,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),

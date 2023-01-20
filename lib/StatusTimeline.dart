@@ -34,7 +34,7 @@ class StatusTimeline extends StatelessWidget {
         ),
         //  centerTitle: true,
         leadingWidth: 30,
-
+        centerTitle: false,
         title: Padding(
             padding:
             const EdgeInsets.symmetric(vertical: 15),

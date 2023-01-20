@@ -127,7 +127,7 @@ class IssueRaisedState extends State<IssueRaised> {
                   const Color(0xff27a9e1)
                 ])),
           ),
-          //  centerTitle: true,
+          centerTitle: false,
           leadingWidth: 30,
 
           title: Padding(
@@ -501,7 +501,7 @@ class IssueRaisedState extends State<IssueRaised> {
               width: 200,
               height: 50,
               margin: EdgeInsets.only(top: 100),
-              child: RaisedButton(
+              child: MaterialButton(
                 elevation: 10,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
