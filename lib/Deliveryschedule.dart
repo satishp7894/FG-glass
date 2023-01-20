@@ -355,7 +355,7 @@ class DeliveryScheduleState extends State<DeliverySchedule> {
 
               Container(
                   height: 150,
-                  width: 400,
+                  width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.only(bottom: 16),
                   color: const Color(0xfff3f3f3),
                   child: Column(children: <Widget>[

@@ -321,8 +321,7 @@ class OrdersPieChartPageState extends State<OrdersPieChartPage> {
               ],
             ),
           )),
-      body: Center(
-
+      body: SingleChildScrollView(
         child: Column (
           children:[
           SizedBox(
@@ -360,7 +359,8 @@ class OrdersPieChartPageState extends State<OrdersPieChartPage> {
               showLegendsInRow: false),
           //gradientList: gradientList,
         ),
-      ])),
+      ]),
+      ),
     );
   }
 }

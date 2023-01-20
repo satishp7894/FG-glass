@@ -379,155 +379,158 @@ class IssueRaisedState extends State<IssueRaised> {
                 ],
               ),
             )),
-        body: Column(
-          children: [
-            Container(
-              height: 50,
-              margin: EdgeInsets.only(top: 16),
-              child: Text(
-                'Issue Raised',
-                style: TextStyle(
-                  fontFamily: 'Lato',
-                  fontSize: 20,
-                  color: const Color(0xff333333),
-                  fontWeight: FontWeight.w900,
-                  height: 0.65,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 50,
+                margin: EdgeInsets.only(top: 16),
+                child: Text(
+                  'Issue Raised',
+                  style: TextStyle(
+                    fontFamily: 'Lato',
+                    fontSize: 20,
+                    color: const Color(0xff333333),
+                    fontWeight: FontWeight.w900,
+                    height: 0.65,
+                  ),
+                  textHeightBehavior:
+                      TextHeightBehavior(applyHeightToFirstAscent: false),
+                  textAlign: TextAlign.center,
                 ),
-                textHeightBehavior:
-                    TextHeightBehavior(applyHeightToFirstAscent: false),
-                textAlign: TextAlign.center,
               ),
-            ),
-            Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Date",
-                        style: TextStyle(
-                          fontFamily: 'Lato',
-                          fontSize: 20,
-                          color: const Color(0xff333333),
-                          height: 2.0625,
-                          fontWeight: FontWeight.w700,
-                        )),
-                    Container(
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Date",
+                          style: TextStyle(
+                            fontFamily: 'Lato',
+                            fontSize: 20,
+                            color: const Color(0xff333333),
+                            height: 2.0625,
+                            fontWeight: FontWeight.w700,
+                          )),
+                      Container(
+                          height: 40,
+                          width: 200,
+                          child: Text(formattedDate,
+                              style: TextStyle(
+                                fontFamily: 'Lato',
+                                fontSize: 16,
+                                color: const Color(0xff333333),
+                                height: 2.0625,
+                              )))
+                    ],
+                  )),
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Category",
+                          style: TextStyle(
+                            fontFamily: 'Lato',
+                            fontSize: 20,
+                            color: const Color(0xff333333),
+                            height: 2.0625,
+                            fontWeight: FontWeight.w700,
+                          )),
+                      Container(
                         height: 40,
                         width: 200,
-                        child: Text(formattedDate,
+                        child: DropdownButton(
+                          isExpanded: true,
+                          items: data.map((item) {
+                            return DropdownMenuItem(
+                              onTap: () {
+                                id = item['CategoryID'];
+                              },
+                              //
+
+                              child: Text(item['Category']),
+                              value: item['Category'],
+                            );
+                          }).toList(),
+                          onChanged: (newVal) {
+                            setState(() {
+                              selectedId = id;
+                              print(selectedId);
+                              selectedSpinnerItem = newVal.toString();
+                            });
+                          },
+                          value: selectedSpinnerItem,
+                        ),
+                      )
+                    ],
+                  )),
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Description",
+                          style: TextStyle(
+                            fontFamily: 'Lato',
+                            fontSize: 20,
+                            color: const Color(0xff333333),
+                            height: 2.0625,
+                            fontWeight: FontWeight.w700,
+                          )),
+                      Container(
+                          height: 65,
+                          width: 200,
+                          child: TextField(
+                            maxLines: 3,
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              //labelText: 'Enter the Value',
+                              errorText: _validate
+                                  ? 'Description Can\'t Be Empty'
+                                  : null,
+                            ),
                             style: TextStyle(
+                              color: Colors.black,
                               fontFamily: 'Lato',
                               fontSize: 16,
-                              color: const Color(0xff333333),
-                              height: 2.0625,
-                            )))
-                  ],
-                )),
-            Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Category",
-                        style: TextStyle(
-                          fontFamily: 'Lato',
-                          fontSize: 20,
-                          color: const Color(0xff333333),
-                          height: 2.0625,
-                          fontWeight: FontWeight.w700,
-                        )),
-                    Container(
-                      height: 40,
-                      width: 200,
-                      child: DropdownButton(
-                        isExpanded: true,
-                        items: data.map((item) {
-                          return DropdownMenuItem(
-                            onTap: () {
-                              id = item['CategoryID'];
-                            },
-                            //
+                            ),
+                          ))
+                    ],
+                  )),
+              Container(
+                width: 200,
+                height: 50,
+                margin: EdgeInsets.only(top: 100),
+                child: RaisedButton(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _emailController.text.isEmpty
+                          ? _validate = true
+                          : _validate = false;
+                    });
 
-                            child: Text(item['Category']),
-                            value: item['Category'],
-                          );
-                        }).toList(),
-                        onChanged: (newVal) {
-                          setState(() {
-                            selectedId = id;
-                            print(selectedId);
-                            selectedSpinnerItem = newVal.toString();
-                          });
-                        },
-                        value: selectedSpinnerItem,
-                      ),
-                    )
-                  ],
-                )),
-            Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Description",
-                        style: TextStyle(
-                          fontFamily: 'Lato',
+                    createLoginState(selectedId.toString(), _emailController.text,
+                        globals.custId.toString());
+                    // sendMail();
+                  },
+                  color: const Color(0xff00bfe7),
+                  textColor: Colors.white,
+                  child: Text("Save",
+                      style: TextStyle(
                           fontSize: 20,
-                          color: const Color(0xff333333),
-                          height: 2.0625,
-                          fontWeight: FontWeight.w700,
-                        )),
-                    Container(
-                        height: 65,
-                        width: 200,
-                        child: TextField(
-                          maxLines: 3,
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            //labelText: 'Enter the Value',
-                            errorText: _validate
-                                ? 'Description Can\'t Be Empty'
-                                : null,
-                          ),
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Lato',
-                            fontSize: 16,
-                          ),
-                        ))
-                  ],
-                )),
-            Container(
-              width: 200,
-              height: 50,
-              margin: EdgeInsets.only(top: 100),
-              child: RaisedButton(
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                          letterSpacing: 1,
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.bold)),
                 ),
-                onPressed: () {
-                  setState(() {
-                    _emailController.text.isEmpty
-                        ? _validate = true
-                        : _validate = false;
-                  });
-
-                  createLoginState(selectedId.toString(), _emailController.text,
-                      globals.custId.toString());
-                  // sendMail();
-                },
-                color: const Color(0xff00bfe7),
-                textColor: Colors.white,
-                child: Text("Save",
-                    style: TextStyle(
-                        fontSize: 20,
-                        letterSpacing: 1,
-                        fontFamily: 'Lato',
-                        fontWeight: FontWeight.bold)),
               ),
-            )
-          ],
+              SizedBox(height: 50,),
+            ],
+          ),
         ));
   }
 

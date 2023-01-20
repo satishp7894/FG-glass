@@ -159,392 +159,389 @@ class TIProjectState extends State<TIProject> {
                               width: 400,
                               color: const Color(0xfff3f3f3),
                               margin: EdgeInsets.symmetric(horizontal: 16),
-                              child: Pinned.fromPins(
-                                  Pin(size: 380.0, end: 16.0),
+                              child: Stack(children: <Widget>[
+                                Pinned.fromPins(
+                                  Pin(start: 16.1, end: 16.1),
                                   Pin(size: 220.0, end: 0.0),
-                                  child: Stack(children: <Widget>[
-                                    Pinned.fromPins(
-                                      Pin(start: 22.0, end: 10.1),
-                                      Pin(size: 200.0,start: 10.5),
-                                      child: Stack(
-                                        children: <Widget>[
-                                          Pinned.fromPins(
-                                            Pin(size: 138.0, start: 50),
-                                            Pin(size: 19.0, start: 0.0),
-                                            child: Text(
-                                              'PI No. : ' +
-                                                  " ${snapshot.data[index].number}",
-                                              style: TextStyle(
-                                                fontFamily: 'Lato',
-                                                fontSize: 16,
-                                                color:
-                                                const Color(0xff27a9e1),
-                                                fontWeight: FontWeight.w700,
-                                                height: 1,
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Pinned.fromPins(
+                                        Pin(size: 138.0, start: 50),
+                                        Pin(size: 19.0, start: 0.0),
+                                        child: Text(
+                                          'PI No. : ' +
+                                              " ${snapshot.data[index].number}",
+                                          style: TextStyle(
+                                            fontFamily: 'Lato',
+                                            fontSize: 16,
+                                            color:
+                                            const Color(0xff27a9e1),
+                                            fontWeight: FontWeight.w700,
+                                            height: 1,
                                           ),
-                                          Pinned.fromPins(
-                                            Pin(size: 140.0, start: 50),
-                                            Pin(size: 19.0, start: 30),
-                                            child: Text.rich(
-                                              TextSpan(
-                                                style: TextStyle(
-                                                  fontFamily: 'Lato',
-                                                  fontSize: 16,
-                                                  color: const Color(
-                                                      0xff333333),
-                                                  height: 1,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: 'Date :',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    " ${snapshot.data[index].date}",
-                                                    style: TextStyle(
-                                                      color: const Color(
-                                                          0xff7e7e7e),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                          Pinned.fromPins(
-                                            Pin(size: 200.0, start: 50),
-                                            Pin(size: 19.0, start: 60),
-                                            child: Text.rich(
-                                              TextSpan(
-                                                style: TextStyle(
-                                                  fontFamily: 'Lato',
-                                                  fontSize: 16,
-                                                  color: const Color(
-                                                      0xff333333),
-                                                  height: 1,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: 'Qty :',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    " ${snapshot.data[index].quantity}",
-                                                    style: TextStyle(
-                                                      color: const Color(
-                                                          0xff7e7e7e),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                          Pinned.fromPins(
-                                            Pin(size: 250.0, start: 50),
-                                            Pin(size: 19.0, start: 85),
-                                            child: Text.rich(
-                                              TextSpan(
-                                                style: TextStyle(
-                                                  fontFamily: 'Lato',
-                                                  fontSize: 16,
-                                                  color: const Color(
-                                                      0xff333333),
-                                                  height: 1,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: 'Product :',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    " ${snapshot.data[index].product}",
-                                                    style: TextStyle(
-                                                      color: const Color(
-                                                          0xff7e7e7e),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                          Pinned.fromPins(
-                                            Pin(size: 200.0, start: 50),
-                                            Pin(size: 19.0, start: 115),
-                                            child: Text.rich(
-                                              TextSpan(
-                                                style: TextStyle(
-                                                  fontFamily: 'Lato',
-                                                  fontSize: 16,
-                                                  color: const Color(
-                                                      0xff333333),
-                                                  height: 1,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: 'Project :',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    " ${snapshot.data[index].project}",
-                                                    style: TextStyle(
-                                                      color: const Color(
-                                                          0xff7e7e7e),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                          Pinned.fromPins(
-                                            Pin(size: 250.0, start: 50),
-                                            Pin(size: 19.0, start: 145),
-                                            child: Text.rich(
-                                              TextSpan(
-                                                style: TextStyle(
-                                                  fontFamily: 'Lato',
-                                                  fontSize: 16,
-                                                  color: const Color(
-                                                      0xff333333),
-                                                  height: 1,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: 'Date :',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    " ${snapshot.data[index].date}",
-                                                    style: TextStyle(
-                                                      color: const Color(
-                                                          0xff7e7e7e),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-                                          Pinned.fromPins(
-                                            Pin(size: 300.0, start: 50),
-                                            Pin(size: 19.0, start: 175),
-                                            child: Text.rich(
-                                              TextSpan(
-                                                style: TextStyle(
-                                                  fontFamily: 'Lato',
-                                                  fontSize: 16,
-                                                  color: const Color(
-                                                      0xff333333),
-                                                  height: 1,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: 'ASM :',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    " ${snapshot.data[index].asm}",
-                                                    style: TextStyle(
-                                                      color: const Color(
-                                                          0xff7e7e7e),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-
-                                          Pinned.fromPins(
-                                            Pin(size: 140.0, end: 0.0),
-                                            Pin(size: 20.0, start: 30),
-                                            child: Text.rich(
-                                              TextSpan(
-                                                style: TextStyle(
-                                                  fontFamily: 'Lato',
-                                                  fontSize: 16,
-                                                  color: const Color(0xff333333),
-                                                  height: 2.0625,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: 'SQM :',
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    " ${snapshot.data[index].sqm}",
-                                                    style: TextStyle(
-                                                      color:
-                                                      const Color(0xff7e7e7e),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-
-                                          Pinned.fromPins(
-                                            Pin(size: 140.0, end: 0.0),
-                                            Pin(size: 20.0, start: 0),
-                                            child: Text.rich(
-                                              TextSpan(
-                                                style: TextStyle(
-                                                  fontFamily: 'Lato',
-                                                  fontSize: 16,
-                                                  color: const Color(0xff333333),
-                                                  height: 2.0625,
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text: 'Version :',
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  TextSpan(
-                                                    text:
-                                                    " ${snapshot.data[index].revNo}",
-                                                    style: TextStyle(
-                                                      color:
-                                                      const Color(0xff7e7e7e),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              textHeightBehavior:
-                                              TextHeightBehavior(
-                                                  applyHeightToFirstAscent:
-                                                  false),
-                                              textAlign: TextAlign.left,
-                                            ),
-                                          ),
-
-                                          Pinned.fromPins(
-                                            Pin(size: 300.4, end: 2.0),
-                                            Pin(size: 1.0, start: 200),
-                                            child: SvgPicture.string(
-                                              _svg_ctuw2f,
-                                              allowDrawingOutsideViewBox:
-                                              true,
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                          Pinned.fromPins(
-                                            Pin(size: 41.0, start: 0.0),
-                                            Pin(size: 41.0, start: 0.5),
-                                            child: Stack(
-                                              children: <Widget>[
-                                                Pinned.fromPins(
-                                                  Pin(start: 0.0, end: 0.0),
-                                                  Pin(start: 0.0, end: 0.0),
-                                                  child: Container(
-                                                    decoration:
-                                                    BoxDecoration(
-                                                      borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.elliptical(
-                                                              9999.0,
-                                                              9999.0)),
-                                                      color: const Color(
-                                                          0xff27a9e1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Pinned.fromPins(
-                                                  Pin(size: 30.0, start: 5),
-                                                  Pin(start: 10.0, end: 0.0),
-                                                  child: Text(
-                                                    SrNo,
-                                                    style: TextStyle(
-                                                      fontFamily: 'Lato',
-                                                      fontSize: 16,
-                                                      color: const Color(
-                                                          0xffffffff),
-                                                      fontWeight:
-                                                      FontWeight.w900,
-                                                      height:
-                                                      1.9166666666666667,
-                                                    ),
-                                                    textHeightBehavior:
-                                                    TextHeightBehavior(
-                                                        applyHeightToFirstAscent:
-                                                        false),
-                                                    textAlign:
-                                                    TextAlign.center,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
                                       ),
-                                    ),
-                                  ])));
+                                      Pinned.fromPins(
+                                        Pin(size: 140.0, start: 50),
+                                        Pin(size: 19.0, start: 30),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 16,
+                                              color: const Color(
+                                                  0xff333333),
+                                              height: 1,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: 'Date :',
+                                                style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.w700,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                " ${snapshot.data[index].date}",
+                                                style: TextStyle(
+                                                  color: const Color(
+                                                      0xff7e7e7e),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                      Pinned.fromPins(
+                                        Pin(size: 200.0, start: 50),
+                                        Pin(size: 19.0, start: 60),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 16,
+                                              color: const Color(
+                                                  0xff333333),
+                                              height: 1,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: 'Qty :',
+                                                style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.w700,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                " ${snapshot.data[index].quantity}",
+                                                style: TextStyle(
+                                                  color: const Color(
+                                                      0xff7e7e7e),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                      Pinned.fromPins(
+                                        Pin(size: 250.0, start: 50),
+                                        Pin(size: 19.0, start: 85),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 16,
+                                              color: const Color(
+                                                  0xff333333),
+                                              height: 1,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: 'Product :',
+                                                style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.w700,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                " ${snapshot.data[index].product}",
+                                                style: TextStyle(
+                                                  color: const Color(
+                                                      0xff7e7e7e),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                      Pinned.fromPins(
+                                        Pin(size: 200.0, start: 50),
+                                        Pin(size: 19.0, start: 115),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 16,
+                                              color: const Color(
+                                                  0xff333333),
+                                              height: 1,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: 'Project :',
+                                                style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.w700,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                " ${snapshot.data[index].project}",
+                                                style: TextStyle(
+                                                  color: const Color(
+                                                      0xff7e7e7e),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                      Pinned.fromPins(
+                                        Pin(size: 250.0, start: 50),
+                                        Pin(size: 19.0, start: 145),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 16,
+                                              color: const Color(
+                                                  0xff333333),
+                                              height: 1,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: 'Date :',
+                                                style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.w700,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                " ${snapshot.data[index].date}",
+                                                style: TextStyle(
+                                                  color: const Color(
+                                                      0xff7e7e7e),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                      Pinned.fromPins(
+                                        Pin(size: 300.0, start: 50),
+                                        Pin(size: 19.0, start: 175),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 16,
+                                              color: const Color(
+                                                  0xff333333),
+                                              height: 1,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: 'ASM :',
+                                                style: TextStyle(
+                                                  fontWeight:
+                                                  FontWeight.w700,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                " ${snapshot.data[index].asm}",
+                                                style: TextStyle(
+                                                  color: const Color(
+                                                      0xff7e7e7e),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+
+                                      Pinned.fromPins(
+                                        Pin(size: 140.0, end: 0.0),
+                                        Pin(size: 20.0, start: 30),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 16,
+                                              color: const Color(0xff333333),
+                                              height: 2.0625,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: 'SQM :',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                " ${snapshot.data[index].sqm}",
+                                                style: TextStyle(
+                                                  color:
+                                                  const Color(0xff7e7e7e),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+
+                                      Pinned.fromPins(
+                                        Pin(size: 140.0, end: 0.0),
+                                        Pin(size: 20.0, start: 0),
+                                        child: Text.rich(
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontFamily: 'Lato',
+                                              fontSize: 16,
+                                              color: const Color(0xff333333),
+                                              height: 2.0625,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: 'Version :',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                " ${snapshot.data[index].revNo}",
+                                                style: TextStyle(
+                                                  color:
+                                                  const Color(0xff7e7e7e),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          textHeightBehavior:
+                                          TextHeightBehavior(
+                                              applyHeightToFirstAscent:
+                                              false),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+
+                                      Pinned.fromPins(
+                                        Pin(start: 0.0, end: 0.0),
+                                        Pin(size: 1.0, start: 220),
+                                        child: SvgPicture.string(
+                                          _svg_ctuw2f,
+                                          allowDrawingOutsideViewBox:
+                                          true,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                      Pinned.fromPins(
+                                        Pin(size: 41.0, start: 0.0),
+                                        Pin(size: 41.0, start: 0.5),
+                                        child: Stack(
+                                          children: <Widget>[
+                                            Pinned.fromPins(
+                                              Pin(start: 0.0, end: 0.0),
+                                              Pin(start: 0.0, end: 0.0),
+                                              child: Container(
+                                                decoration:
+                                                BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.all(
+                                                      Radius.elliptical(
+                                                          9999.0,
+                                                          9999.0)),
+                                                  color: const Color(
+                                                      0xff27a9e1),
+                                                ),
+                                              ),
+                                            ),
+                                            Pinned.fromPins(
+                                              Pin(size: 30.0, start: 5),
+                                              Pin(start: 10.0, end: 0.0),
+                                              child: Text(
+                                                SrNo,
+                                                style: TextStyle(
+                                                  fontFamily: 'Lato',
+                                                  fontSize: 16,
+                                                  color: const Color(
+                                                      0xffffffff),
+                                                  fontWeight:
+                                                  FontWeight.w900,
+                                                  height:
+                                                  1.9166666666666667,
+                                                ),
+                                                textHeightBehavior:
+                                                TextHeightBehavior(
+                                                    applyHeightToFirstAscent:
+                                                    false),
+                                                textAlign:
+                                                TextAlign.center,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]));
                         })
                         : Center(
                         child: CircularProgressIndicator(

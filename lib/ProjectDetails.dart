@@ -73,7 +73,7 @@ class ProjectDetailsState extends State<ProjectDetails> {
                   const Color(0xff27a9e1)
                 ])),
           ),
-          //  centerTitle: true,
+           centerTitle: false,
           //leadingWidth: 30,
 
           title: Padding(
@@ -415,11 +415,11 @@ class ProjectDetailsState extends State<ProjectDetails> {
                                 width: 350,
                                 child: Pinned.fromPins(
                                     Pin(start: 16.0, end: 16.0),
-                                    Pin(size: 180.0, start: 16.0),
+                                    Pin(size: 190.0, start: 16.0),
                                     child: Stack(children: <Widget>[
                                       Pinned.fromPins(
                                         Pin(start: 0.0, end: 0.0),
-                                        Pin(size: 190.0, start: 16.0),
+                                        Pin(size: 200.0, start: 16.0),
                                         child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -429,8 +429,9 @@ class ProjectDetailsState extends State<ProjectDetails> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 250.0, middle: 0.325),
+                                        Pin(size: 300.0, start: 40),
                                         Pin(size: 19.0, start: 5.0),
+
                                         child: Text.rich(
                                           TextSpan(
                                             style: TextStyle(
@@ -464,7 +465,7 @@ class ProjectDetailsState extends State<ProjectDetails> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 240.0, middle: 0.2911),
+                                        Pin(size: 300.0, start: 40),
                                         Pin(size: 20.0, start: 35),
                                         child: Text.rich(
                                           TextSpan(
@@ -499,8 +500,8 @@ class ProjectDetailsState extends State<ProjectDetails> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 240.0, middle: 0.2911),
-                                        Pin(size: 20.0, start: 60),
+                                        Pin(size: 300.0, start: 40),
+                                        Pin(size: 20.0, start: 65),
                                         child: Text.rich(
                                           TextSpan(
                                             style: TextStyle(
@@ -534,8 +535,8 @@ class ProjectDetailsState extends State<ProjectDetails> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 240.0, middle: 0.2911),
-                                        Pin(size: 20.0, start: 85),
+                                        Pin(size: 300.0, start: 40),
+                                        Pin(size: 20.0, start: 95),
                                         child: Text.rich(
                                           TextSpan(
                                             style: TextStyle(
@@ -569,8 +570,8 @@ class ProjectDetailsState extends State<ProjectDetails> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 240.0, middle: 0.2911),
-                                        Pin(size: 20.0, start: 110),
+                                        Pin(size: 300.0, start: 40),
+                                        Pin(size: 20.0, start: 125),
                                         child: Text.rich(
                                           TextSpan(
                                             style: TextStyle(
@@ -604,8 +605,8 @@ class ProjectDetailsState extends State<ProjectDetails> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 240.0, middle: 0.2911),
-                                        Pin(size: 20.0, start: 140),
+                                        Pin(size: 300.0, start: 40),
+                                        Pin(size: 20.0, start: 155),
                                         child: Text.rich(
                                           TextSpan(
                                             style: TextStyle(

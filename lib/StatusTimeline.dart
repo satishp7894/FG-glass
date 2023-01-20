@@ -245,538 +245,998 @@ class StatusTimeline extends StatelessWidget {
               ],
             ),
           )),
-      body: Stack(
-        children: <Widget>[
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(start: 0.0, end: 23.5),
-            child: Stack(
-              children: <Widget>[
 
+      body: Column(
+        children: [
 
-                Pinned.fromPins(
-                  Pin(start: 16.0, end: 16.0),
-                  Pin(size: 150.0, middle: 0.2062),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: const Color(0xfff3f3f3),
-                    ),
+          SizedBox(height: 40,),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0,right: 16),
+            child: Container(
+              height: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: const Color(0xfff3f3f3),
                   ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 173.0, start: 30.0),
-                  Pin(size: 45.0, middle: 0.197),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 173.0, start: 30.0),
-                  Pin(size: 45.0, middle: 0.2852),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 173.0, end: 31.0),
-                  Pin(size: 45.0, middle: 0.2852),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 173.0, end: 31.0),
-                  Pin(size: 45.0, middle: 0.197),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
-                ),
 
-                Pinned.fromPins(
-                  Pin(size: 55.0, middle: 0.6435),
-                  Pin(size: 20.0, middle: 0.2921),
-                  child: Text(
-                    'Stage D',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      color: const Color(0xff333333),
-                      height: 1.1428571428571428,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0,right: 8),
+                    child: Row(children: [
+                    Expanded(
+                      child: Container(
+                                decoration: BoxDecoration(
+                                  color: const Color(0xffffffff),
+                                ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                      'Stage A',
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 14,
+                                        color: const Color(0xff333333),
+                                        height: 1.1428571428571428,
+                                      ),
+                                      textHeightBehavior:
+                                          TextHeightBehavior(applyHeightToFirstAscent: false),
+                                      textAlign: TextAlign.left,
+                                    ),
+                          Stack(
+                            children: [
+                              SvgPicture.string(
+                                                    _svg_lj2ydv,
+                                                    allowDrawingOutsideViewBox: true,
+                                                    fit: BoxFit.fill,
+                                                  ),
+                              Positioned(
+                                bottom: 4.2,
+                                right: 3,
+                                child: Column(
+
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xff27a9e1),
+                                              ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                      ],
+                                    ),
+                                    SizedBox(height: 1.0,),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                      ],
+                                    ),
+                                    SizedBox(height: 1.0,),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                        SizedBox(width: 1.0,),
+                                        Container(
+                                          height: 2.7,width: 2.9,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff27a9e1),
+                                          ),),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                            ],
+                          ),
+                        ),
+                        height: 45,
+                      ),
                     ),
-                    textHeightBehavior:
-                        TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 54.0, start: 51.0),
-                  Pin(size: 20.0, middle: 0.2065),
-                  child: Text(
-                    'Stage A',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      color: const Color(0xff333333),
-                      height: 1.1428571428571428,
-                    ),
-                    textHeightBehavior:
-                        TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 53.0, middle: 0.6399),
-                  Pin(size: 20.0, middle: 0.2065),
-                  child: Text(
-                    'Stage B',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      color: const Color(0xff333333),
-                      height: 1.1428571428571428,
-                    ),
-                    textHeightBehavior:
-                        TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 55.0, start: 51.0),
-                  Pin(size: 20.0, middle: 0.2921),
-                  child: Text(
-                    'Stage C',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      color: const Color(0xff333333),
-                      height: 1.1428571428571428,
-                    ),
-                    textHeightBehavior:
-                        TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 20.4, middle: 0.4267),
-                  Pin(size: 24.4, middle: 0.2904),
-                  child:
-                      // Adobe XD layer: 'calendar-interface-…' (group)
-                      Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Pinned.fromPins(
-                              Pin(start: 0.0, end: 0.0),
-                              Pin(start: 0.0, end: 0.0),
-                              child: SvgPicture.string(
-                                _svg_lj2ydv,
-                                allowDrawingOutsideViewBox: true,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
+                      SizedBox(width: 10,),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xffffffff),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Stage B',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                    color: const Color(0xff333333),
+                                    height: 1.1428571428571428,
+                                  ),
+                                  textHeightBehavior:
+                                  TextHeightBehavior(applyHeightToFirstAscent: false),
+                                  textAlign: TextAlign.left,
                                 ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
+                                Stack(
+                                  children: [
+                                    SvgPicture.string(
+                                      _svg_lj2ydv,
+                                      allowDrawingOutsideViewBox: true,
+                                      fit: BoxFit.fill,
+                                    ),
+                                    Positioned(
+                                      bottom: 4.2,
+                                      right: 3,
+                                      child: Column(
+
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                            ],
+                                          ),
+                                          SizedBox(height: 1.0,),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                            ],
+                                          ),
+                                          SizedBox(height: 1.0,),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                              SizedBox(width: 1.0,),
+                                              Container(
+                                                height: 2.7,width: 2.9,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xff27a9e1),
+                                                ),),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
+                              ],
                             ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
+                          height: 45,
                         ),
                       ),
-                    ],
+
+                    ],),
                   ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 20.4, middle: 0.4267),
-                  Pin(size: 24.4, middle: 0.2043),
-                  child:
-                      // Adobe XD layer: 'calendar-interface-…' (group)
-                      Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Pinned.fromPins(
-                              Pin(start: 0.0, end: 0.0),
-                              Pin(start: 0.0, end: 0.0),
-                              child: SvgPicture.string(
-                                _svg_lj2ydv,
-                                allowDrawingOutsideViewBox: true,
-                                fit: BoxFit.fill,
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0,right: 8),
+                      child: Row(children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Stage C',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 14,
+                                      color: const Color(0xff333333),
+                                      height: 1.1428571428571428,
+                                    ),
+                                    textHeightBehavior:
+                                    TextHeightBehavior(applyHeightToFirstAscent: false),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  Stack(
+                                    children: [
+                                      SvgPicture.string(
+                                        _svg_lj2ydv,
+                                        allowDrawingOutsideViewBox: true,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      Positioned(
+                                        bottom: 4.2,
+                                        right: 3,
+                                        child: Column(
+
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                              ],
+                                            ),
+                                            SizedBox(height: 1.0,),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                              ],
+                                            ),
+                                            SizedBox(height: 1.0,),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                                SizedBox(width: 1.0,),
+                                                Container(
+                                                  height: 2.7,width: 2.9,
+                                                  decoration: BoxDecoration(
+                                                    color: const Color(0xff27a9e1),
+                                                  ),),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                          ],
+                            height: 45,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 20.4, end: 46.6),
-                  Pin(size: 24.4, middle: 0.2043),
-                  child:
-                      // Adobe XD layer: 'calendar-interface-…' (group)
-                      Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Pinned.fromPins(
-                              Pin(start: 0.0, end: 0.0),
-                              Pin(start: 0.0, end: 0.0),
-                              child: SvgPicture.string(
-                                _svg_lj2ydv,
-                                allowDrawingOutsideViewBox: true,
-                                fit: BoxFit.fill,
+                        SizedBox(width: 10,),
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Stage A',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 14,
+                                      color: const Color(0xff333333),
+                                      height: 1.1428571428571428,
+                                    ),
+                                    textHeightBehavior:
+                                    TextHeightBehavior(applyHeightToFirstAscent: false),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  // SvgPicture.string(
+                                  //   _svg_lj2ydv,
+                                  //   allowDrawingOutsideViewBox: true,
+                                  //   fit: BoxFit.fill,
+                                  // ),
+                                ],
                               ),
                             ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.452),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.6206),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, start: 3.0),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.39),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, middle: 0.61),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                            Pinned.fromPins(
-                              Pin(size: 2.9, end: 3.0),
-                              Pin(size: 2.7, middle: 0.7892),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xff27a9e1),
-                                ),
-                              ),
-                            ),
-                          ],
+                            height: 45,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+
+                      ],),
+                    ),
+                ],),
+              ),
 
 
-              ],
             ),
           ),
         ],
       ),
+      // body: Stack(
+      //   children: <Widget>[
+      //
+      //
+      //     Pinned.fromPins(
+      //       Pin(start: 16.0, end: 16.0),
+      //       Pin(size: 150.0, middle: 0.2062),
+      //       child: Container(
+      //         decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(5.0),
+      //           color: const Color(0xfff3f3f3),
+      //         ),
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 173.0, start: 30.0),
+      //       Pin(size: 45.0, middle: 0.197),
+      //       child: Container(
+      //         decoration: BoxDecoration(
+      //           color: const Color(0xffffffff),
+      //         ),
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 173.0, start: 30.0),
+      //       Pin(size: 45.0, middle: 0.2852),
+      //       child: Container(
+      //         decoration: BoxDecoration(
+      //           color: const Color(0xffffffff),
+      //         ),
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 173.0, end: 31.0),
+      //       Pin(size: 45.0, middle: 0.2852),
+      //       child: Container(
+      //         decoration: BoxDecoration(
+      //           color: const Color(0xffffffff),
+      //         ),
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 173.0, end: 31.0),
+      //       Pin(size: 45.0, middle: 0.197),
+      //       child: Container(
+      //         decoration: BoxDecoration(
+      //           color: const Color(0xffffffff),
+      //         ),
+      //       ),
+      //     ),
+      //
+      //     Pinned.fromPins(
+      //       Pin(size: 55.0, middle: 0.6435),
+      //       Pin(size: 20.0, middle: 0.2921),
+      //       child: Text(
+      //         'Stage D',
+      //         style: TextStyle(
+      //           fontFamily: 'Poppins',
+      //           fontSize: 14,
+      //           color: const Color(0xff333333),
+      //           height: 1.1428571428571428,
+      //         ),
+      //         textHeightBehavior:
+      //             TextHeightBehavior(applyHeightToFirstAscent: false),
+      //         textAlign: TextAlign.left,
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 54.0, start: 51.0),
+      //       Pin(size: 20.0, middle: 0.2065),
+      //       child: Text(
+      //         'Stage A',
+      //         style: TextStyle(
+      //           fontFamily: 'Poppins',
+      //           fontSize: 14,
+      //           color: const Color(0xff333333),
+      //           height: 1.1428571428571428,
+      //         ),
+      //         textHeightBehavior:
+      //             TextHeightBehavior(applyHeightToFirstAscent: false),
+      //         textAlign: TextAlign.left,
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 53.0, middle: 0.6399),
+      //       Pin(size: 20.0, middle: 0.2065),
+      //       child: Text(
+      //         'Stage B',
+      //         style: TextStyle(
+      //           fontFamily: 'Poppins',
+      //           fontSize: 14,
+      //           color: const Color(0xff333333),
+      //           height: 1.1428571428571428,
+      //         ),
+      //         textHeightBehavior:
+      //             TextHeightBehavior(applyHeightToFirstAscent: false),
+      //         textAlign: TextAlign.left,
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 55.0, start: 51.0),
+      //       Pin(size: 20.0, middle: 0.2921),
+      //       child: Text(
+      //         'Stage C',
+      //         style: TextStyle(
+      //           fontFamily: 'Poppins',
+      //           fontSize: 14,
+      //           color: const Color(0xff333333),
+      //           height: 1.1428571428571428,
+      //         ),
+      //         textHeightBehavior:
+      //             TextHeightBehavior(applyHeightToFirstAscent: false),
+      //         textAlign: TextAlign.left,
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 20.4, middle: 0.4267),
+      //       Pin(size: 24.4, middle: 0.2904),
+      //       child:
+      //           // Adobe XD layer: 'calendar-interface-…' (group)
+      //           Stack(
+      //         children: <Widget>[
+      //           Pinned.fromPins(
+      //             Pin(start: 0.0, end: 0.0),
+      //             Pin(start: 0.0, end: 0.0),
+      //             child: Stack(
+      //               children: <Widget>[
+      //                 Pinned.fromPins(
+      //                   Pin(start: 0.0, end: 0.0),
+      //                   Pin(start: 0.0, end: 0.0),
+      //                   child: SvgPicture.string(
+      //                     _svg_lj2ydv,
+      //                     allowDrawingOutsideViewBox: true,
+      //                     fit: BoxFit.fill,
+      //                   ),
+      //                 ),
+      //                 // Pinned.fromPins(
+      //                 //   Pin(size: 2.9, start: 3.0),
+      //                 //   Pin(size: 2.7, middle: 0.452),
+      //                 //   child: Container(
+      //                 //     decoration: BoxDecoration(
+      //                 //       color: const Color(0xff27a9e1),
+      //                 //     ),
+      //                 //   ),
+      //                 // ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, start: 3.0),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, start: 3.0),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 20.4, middle: 0.4267),
+      //       Pin(size: 24.4, middle: 0.2043),
+      //       child:
+      //           // Adobe XD layer: 'calendar-interface-…' (group)
+      //           Stack(
+      //         children: <Widget>[
+      //           Pinned.fromPins(
+      //             Pin(start: 0.0, end: 0.0),
+      //             Pin(start: 0.0, end: 0.0),
+      //             child: Stack(
+      //               children: <Widget>[
+      //                 Pinned.fromPins(
+      //                   Pin(start: 0.0, end: 0.0),
+      //                   Pin(start: 0.0, end: 0.0),
+      //                   child: SvgPicture.string(
+      //                     _svg_lj2ydv,
+      //                     allowDrawingOutsideViewBox: true,
+      //                     fit: BoxFit.fill,
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, start: 3.0),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, start: 3.0),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, start: 3.0),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //     Pinned.fromPins(
+      //       Pin(size: 20.4, end: 46.6),
+      //       Pin(size: 24.4, middle: 0.2043),
+      //       child:
+      //           // Adobe XD layer: 'calendar-interface-…' (group)
+      //           Stack(
+      //         children: <Widget>[
+      //           Pinned.fromPins(
+      //             Pin(start: 0.0, end: 0.0),
+      //             Pin(start: 0.0, end: 0.0),
+      //             child: Stack(
+      //               children: <Widget>[
+      //                 Pinned.fromPins(
+      //                   Pin(start: 0.0, end: 0.0),
+      //                   Pin(start: 0.0, end: 0.0),
+      //                   child: SvgPicture.string(
+      //                     _svg_lj2ydv,
+      //                     allowDrawingOutsideViewBox: true,
+      //                     fit: BoxFit.fill,
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, start: 3.0),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.452),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, start: 3.0),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.6206),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, start: 3.0),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.39),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, middle: 0.61),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 Pinned.fromPins(
+      //                   Pin(size: 2.9, end: 3.0),
+      //                   Pin(size: 2.7, middle: 0.7892),
+      //                   child: Container(
+      //                     decoration: BoxDecoration(
+      //                       color: const Color(0xff27a9e1),
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //
+      //
+      //   ],
+      // ),
     );
   }
 }

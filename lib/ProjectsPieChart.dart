@@ -321,24 +321,23 @@ class ProjectsPieChartPageState extends State<ProjectsPieChartPage> {
               ],
             ),
           )),
-      body: Center(
-
+      body: SingleChildScrollView(
         child: Column (
     children:[
-      SizedBox(
+        SizedBox(
         height: 48,
-      ),
+        ),
 
-      Text('Projects',
-      style: TextStyle(
+        Text('Projects',
+        style: TextStyle(
         color: Colors.black87,
         fontSize: 20,
         fontWeight: FontWeight.w600,
-      ),),
-      SizedBox(
+        ),),
+        SizedBox(
         height: 48,
-      ),
-      PieChart(
+        ),
+        PieChart(
           chartType: ChartType.disc,
 
           dataMap: dataMap,
@@ -360,7 +359,8 @@ class ProjectsPieChartPageState extends State<ProjectsPieChartPage> {
               showLegendsInRow: false),
           //gradientList: gradientList,
         ),
-  ])),
+  ]),
+      ),
     );
   }
 }

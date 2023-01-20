@@ -156,13 +156,13 @@ class DCProjectState extends State<DCProject> {
                           print(SrNo);
 
                           return Container(
-                              height: 210,
+                              height: 180,
                               width: 400,
                               color: const Color(0xfff3f3f3),
                               margin: EdgeInsets.symmetric(horizontal: 16),
                               child: Pinned.fromPins(
-                                  Pin(size: 340.0, end: 16.0),
-                                  Pin(size: 190.0, end: 0.0),
+                                  Pin(start: 16.0, end: 16.0),
+                                  Pin(size: 160.0, end: 0.0),
                                   child: Stack(children: <Widget>[
                                      Pinned.fromPins(
                                           Pin(size: 138.0, start: 50),

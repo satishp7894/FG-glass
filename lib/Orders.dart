@@ -390,7 +390,7 @@ class OrdersState extends State<Orders> {
         body: Column(children: <Widget>[
           Container(
               height: 150,
-              width: 400,
+              width: MediaQuery.of(context).size.width,
               color: const Color(0xfff3f3f3),
               child: Column(children: <Widget>[
                 Container(

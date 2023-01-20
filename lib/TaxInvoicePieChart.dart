@@ -321,48 +321,25 @@ class TaxInvoicePieChartPageState extends State<TaxInvoicePieChartPage> {
               ],
             ),
           )),
-      body: Column(
-        children:[
+      body: SingleChildScrollView(
+        child: Column(
+          children:[
 
-          SizedBox(
-           height: 24,
-          ),
-          Text('Tax Invoice',
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),),
-          PieChart(
-          chartType: ChartType.disc,
-          dataMap: dataMap,
-          colorList: colorList,
-          chartRadius: MediaQuery.of(context).size.width / 2,
-          centerText: "Total SQM",
-          ringStrokeWidth: 0,
-          animationDuration: const Duration(seconds: 3),
-          chartValuesOptions: const ChartValuesOptions(
-              showChartValues: true,
-              showChartValuesOutside: false,
-              showChartValuesInPercentage: true,
-              showChartValueBackground: true),
-          legendOptions: const LegendOptions(
-              showLegends: true,
-              legendShape: BoxShape.rectangle,
-              legendTextStyle: TextStyle(fontSize: 15),
-              legendPosition: LegendPosition.right,
-              showLegendsInRow: false),
-          //gradientList: gradientList,
-        ),
-          SizedBox(
-            height: 24,
-          ),
-          PieChart(
+            SizedBox(
+             height: 24,
+            ),
+            Text('Tax Invoice',
+              style: TextStyle(
+                color: Colors.black87,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),),
+            PieChart(
             chartType: ChartType.disc,
             dataMap: dataMap,
             colorList: colorList,
             chartRadius: MediaQuery.of(context).size.width / 2,
-            centerText: "Grand Total",
+            centerText: "Total SQM",
             ringStrokeWidth: 0,
             animationDuration: const Duration(seconds: 3),
             chartValuesOptions: const ChartValuesOptions(
@@ -378,7 +355,32 @@ class TaxInvoicePieChartPageState extends State<TaxInvoicePieChartPage> {
                 showLegendsInRow: false),
             //gradientList: gradientList,
           ),
-      ]),
+            SizedBox(
+              height: 24,
+            ),
+            PieChart(
+              chartType: ChartType.disc,
+              dataMap: dataMap,
+              colorList: colorList,
+              chartRadius: MediaQuery.of(context).size.width / 2,
+              centerText: "Grand Total",
+              ringStrokeWidth: 0,
+              animationDuration: const Duration(seconds: 3),
+              chartValuesOptions: const ChartValuesOptions(
+                  showChartValues: true,
+                  showChartValuesOutside: false,
+                  showChartValuesInPercentage: true,
+                  showChartValueBackground: true),
+              legendOptions: const LegendOptions(
+                  showLegends: true,
+                  legendShape: BoxShape.rectangle,
+                  legendTextStyle: TextStyle(fontSize: 15),
+                  legendPosition: LegendPosition.right,
+                  showLegendsInRow: false),
+              //gradientList: gradientList,
+            ),
+        ]),
+      ),
     );
   }
 }
