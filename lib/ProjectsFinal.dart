@@ -324,7 +324,7 @@ class ProjectsFinalState extends State<ProjectsFinal> {
                                           ),
                                         ),
                                         Pinned.fromPins(
-                                          Pin(size: 250.0, end: 51.0),
+                                          Pin(size: 300.0, start: 40),
                                           Pin(size: 19.0, end: 10.0),
                                           child: InkWell(
                                             onTap: () {

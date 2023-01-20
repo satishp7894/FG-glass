@@ -105,7 +105,7 @@ class Dash1State extends State<Dash1> {
 
     builder: (context, AsyncSnapshot snapshot) {
 
-      print('-------${snapshot.data[0].count}');
+      // print('-------${snapshot.data[0].count}');
     return snapshot.data != null?
 
 

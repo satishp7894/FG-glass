@@ -336,7 +336,7 @@ class PIDateState extends State<PIDate> {
         body: Column(children: <Widget>[
           Container(
               height: 150,
-              width: 400,
+              width: MediaQuery.of(context).size.width,
               color: const Color(0xfff3f3f3),
               child: Column(children: <Widget>[
                 Container(
@@ -636,7 +636,7 @@ class PIDateState extends State<PIDate> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 250.0, middle: 0.325),
+                                        Pin(size: 300.0, start: 40),
                                         Pin(size: 19.0, start: 25.0),
                                         child: Text.rich(
                                           TextSpan(
@@ -671,7 +671,7 @@ class PIDateState extends State<PIDate> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 240.0, middle: 0.2911),
+                                        Pin(size: 300.0, start: 40),
                                         Pin(size: 20.0, start: 55),
                                         child: Text.rich(
                                           TextSpan(
@@ -706,7 +706,7 @@ class PIDateState extends State<PIDate> {
                                         ),
                                       ),
                                       Pinned.fromPins(
-                                        Pin(size: 240.0, middle: 0.2911),
+                                        Pin(size: 300.0, start: 40),
                                         Pin(size: 20.0, start: 85),
                                         child: Text.rich(
                                           TextSpan(

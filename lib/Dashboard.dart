@@ -298,36 +298,44 @@ class DashboardState extends State<Dashboard> {
             children: [
               Container(
                 height: 80,
-                width: 400,
+                width: MediaQuery.of(context).size.width,
                 child: Dash1(),
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(children: <Widget>[
-                  Container(
-                    height: 150,
-                    width: 350,
-                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                    child: Dash2Carou1(),
-                  ),
-                  Container(
-                    height: 150,
-                    width: 350,
-                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 40),
-                    child: Dash2Caro2(),
-                  ),
-                ]),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                // height: 150,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                     mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+
+                    Container(
+                      height: 150,
+                      width: 350,
+                      margin: EdgeInsets.only(top: 20, bottom: 20,left: 15),
+                      child: Dash2Carou1(),
+                    ),
+                    Container(
+                      height: 150,
+                      width: 350,
+                      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                      child: Dash2Caro2(),
+                    ),
+                  ]),
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 15),
                 height: 270,
-                width: 350,
+                width: MediaQuery.of(context).size.width,
                 child: Dash3(),
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 15),
                 height: 150,
-                width: 350,
+                width: MediaQuery.of(context).size.width,
                 child: Dash31(),
               ),
               /*Container(
@@ -374,9 +382,9 @@ class DashboardState extends State<Dashboard> {
               ),*/
 
               Container(
-                height: 30,
-                width: 400,
-                margin: EdgeInsets.only(left: 15, top: 30),
+                // height: 20,
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.only(left: 15, top: 0),
                 child: Text(
                   "Get the perfect glass",
                   style: TextStyle(
@@ -393,14 +401,14 @@ class DashboardState extends State<Dashboard> {
               ),
               Container(
                 height: 150,
-                width: 400,
+                width: MediaQuery.of(context).size.width,
                 margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: Dash5(),
               ),
               Container(
-                height: 30,
-                width: 400,
-                margin: EdgeInsets.only(left: 15, top: 20),
+                // height: 30,
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.only(left: 15, top: 0),
                 child: Text(
                   "Projects : we've helped bring to life",
                   style: TextStyle(
@@ -418,24 +426,26 @@ class DashboardState extends State<Dashboard> {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(children: <Widget>[
+                  SizedBox(width: 7.5,),
                   Container(
                     height: 150,
                     width: 350,
-                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                    margin: EdgeInsets.symmetric(horizontal: 7.5, vertical: 20),
                     child: Dash6Carou1(),
                   ),
                   Container(
                     height: 150,
                     width: 350,
-                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                    margin: EdgeInsets.symmetric(horizontal: 7.5, vertical: 20),
                     child: Dash6Carou2(),
                   ),
                   Container(
                     height: 150,
                     width: 350,
-                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                    margin: EdgeInsets.symmetric(horizontal: 7.5, vertical: 20),
                     child: Dash6Carou3(),
                   ),
+                  SizedBox(width: 7.5,),
                 ]),
               ),
             ],
