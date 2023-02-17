@@ -409,33 +409,36 @@ class _LoginPageState extends State<LoginPage> {
               fit: BoxFit.fill,
             ),
           ),
-          Pinned.fromPins(
-            Pin(size: 245.0, middle: 0.503),
-            Pin(size: 93.9, middle: 0.1782),
-            child: Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child: Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Container(
-                                child: Image.asset(
-                                    'assets/images/login head.png')),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Pinned.fromPins(
+          //   Pin(size: 245.0, middle: 0.503),
+          //   Pin(size: 93.9, middle: 0.1782),
+          //   child: Stack(
+          //     children: <Widget>[
+          //       Pinned.fromPins(
+          //         Pin(start: 0.0, end: 0.0),
+          //         Pin(start: 0.0, end: 0.0),
+          //         child: Stack(
+          //           children: <Widget>[
+          //             Pinned.fromPins(
+          //               Pin(start: 0.0, end: 0.0),
+          //               Pin(start: 0.0, end: 0.0),
+          //               child: Stack(
+          //                 children: <Widget>[
+          //                   Container(
+          //                       child: Image.asset(
+          //                           'assets/images/login head.png')),
+          //                 ],
+          //               ),
+          //             ),
+          //           ],
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          Container(
+              height: 320,
+              child: Center(child: Image.asset('assets/images/login head.png'))),
         ],
       ),
     );

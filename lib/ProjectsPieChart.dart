@@ -69,7 +69,7 @@ class ProjectsPieChartPageState extends State<ProjectsPieChartPage> {
                     const Color(0xff27a9e1)
                   ])),
         ),
-        //  centerTitle: true,
+         centerTitle: false,
         leadingWidth: 30,
 
         title: Padding(
