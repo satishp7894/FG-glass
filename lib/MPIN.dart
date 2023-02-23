@@ -2,9 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
-import 'package:flutter_fg_glass_app/Notification.dart';
+import 'package:flutter_fg_glass_app/sales/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import './Dashboard.dart';
 import 'package:adobe_xd/page_link.dart';
 import './login.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -49,8 +48,11 @@ class _MPINState extends State<MPIN> {
       //Navigator.pushNamed(context, DASHBOARD);
 
 
+      // Navigator.pushReplacement(context,
+      //     MaterialPageRoute(builder: (BuildContext ctx) => Dashboard()));
+
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext ctx) => Dashboard()));
+          MaterialPageRoute(builder: (BuildContext ctx) => MyHome(salesView: false,)));
       var results = json.decode(response.body);
       //print('response == $results  ${response.body}');
       globals.custId = results['CustID'];
@@ -85,9 +87,7 @@ class _MPINState extends State<MPIN> {
         resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xffffffff),
       body: Stack(
-
         children: <Widget>[
-
           Pinned.fromPins(
             Pin(start: 35.0, end: 35.0),
             Pin(size: 52.0, middle: 0.6019),
@@ -360,7 +360,6 @@ class _MPINState extends State<MPIN> {
               ),
             ),
           ),
-
           Container(
             height: 320,
               child: Center(child: Image.asset('assets/images/login head.png'))),

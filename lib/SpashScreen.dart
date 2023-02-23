@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fg_glass_app/MPIN.dart';
 
 import 'package:flutter_fg_glass_app/login.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -21,6 +23,8 @@ class SplashScreenState extends State<SplashScreen>
   late Animation<double> animation;
 
   startTime() async {
+    final docDir = await getApplicationDocumentsDirectory();
+    Hive.init(docDir.path);
     var _duration = new Duration(seconds: 3);
     return new Timer(_duration, navigationPage);
   }
@@ -31,11 +35,11 @@ class SplashScreenState extends State<SplashScreen>
 
     setState(() {
       if(mpinState == false){
-        Navigator.push(context,
+        Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext ctx) => LoginPage()));
       }
       if(mpinState== true){
-        Navigator.push(context,
+        Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext ctx) => MPIN()));
       }
 

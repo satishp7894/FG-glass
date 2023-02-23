@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -44,6 +44,26 @@ dependencies:
   url_launcher: ^6.0.10
   mailer: ^5.0.1
   pie_chart: ^5.1.0
+  dio: ^5.0.0
+  google_maps_flutter: ^2.2.3
+  geolocator: ^9.0.2
+  flutter_polyline_points: ^1.0.0
+#  background_location: ^0.8.1
+##  background_location:
+##    git:
+##      url: https://github.com/Almoullim/background_location.git
+##      ref: v0.9.0
+  background_location:
+    git:
+      url: https://github.com/hilalbaig/background_location.git
+      ref: master
+  hive: ^2.2.3
+  search_map_location: ^0.0.6
+  connectivity: ^3.0.6
+  rxdart: ^0.27.7
+  path_provider: ^2.0.12
+  flutter_local_notifications: ^13.0.0
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +90,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/Splash.png
+    - assets/images/infinity.jpg
+    - assets/images/marker.png
+    - assets/images/dest.png
+    - assets/images/place.png
     - assets/images/login head.png
     - assets/images/logindesign.png
     - assets/images/dash1.png
