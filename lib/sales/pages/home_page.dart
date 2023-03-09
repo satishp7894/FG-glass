@@ -6,9 +6,8 @@ import '../../utils/apptheme.dart';
 import 'map_page.dart';
 
 class MyHome extends StatefulWidget {
-  final bool salesView;
 
-  const MyHome({Key? key, required this.salesView}) : super(key: key);
+  const MyHome({Key? key}) : super(key: key);
   @override
   _MyHomeState createState() => _MyHomeState();
 }
@@ -27,8 +26,7 @@ class _MyHomeState extends State<MyHome> {
           body: TabBarView(
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              widget.salesView?
-              const SalesPersonViewScreen():const MapPage(),
+             MapPage(),
               TravelRecordsPage(),
             ],
           ),

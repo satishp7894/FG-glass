@@ -132,7 +132,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
       'Location': '$location',
       'Latitude': '${markPosition.latitude}',
       'Longitude': '${markPosition.longitude}',
-      'UserID': '${_prefs.getInt('id')}',
+      'UserID': '${_prefs.getInt('UserID')}',
     });
     var results = json.decode(response.body);
     print('mark results $results');
@@ -324,7 +324,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
           endPosition.longitude);
       SharedPreferences _prefs = await SharedPreferences.getInstance();
       var params = {
-        'userID': '${_prefs.getInt('id')}',
+        'userID': '${_prefs.getInt('UserID')}',
         'start': '${addresses[0]}',
         'end': '${addresses[1]}',
         "startCoords": {
@@ -386,7 +386,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     print(
         "List of address ${addresses.length} ${addresses[0]} ${addresses[1]} ${box['distance']} ${box['path']}");
     var params = {
-      'userID': '${_prefs.getInt('id')}',
+      'userID': '${_prefs.getInt('UserID')}',
       'start': '${addresses[0]}',
       'end': '${addresses[1]}',
       "startCoords": {

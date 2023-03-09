@@ -23,14 +23,15 @@ class RecordBloc {
 
   Future<List<TravelRecord>> _getTravelRecords(String criteria) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
+    print("UserID ==============> ${_prefs.getInt('UserID')}");
     // print("travelRoute URL =================  "+"${Connections.travelRoute}${_prefs.getInt('id')}&Criteria=$criteria");
     //
     // var response = await http.post(Uri.parse(Connections.travelRoute + '${_prefs.getInt('id')}&Criteria=$criteria'));
 
 
-    print("travelRoute URL =================  "+"${Connections.travelRoute}2&Criteria=$criteria");
+    print("travelRoute URL =================  "+"${Connections.travelRoute}${_prefs.getInt('UserID')}&Criteria=$criteria");
 
-    var response = await http.post(Uri.parse(Connections.travelRoute + '2&Criteria=$criteria'));
+    var response = await http.post(Uri.parse(Connections.travelRoute + '${_prefs.getInt('UserID')}&Criteria=$criteria'));
     var result = json.decode(response.body);
 
     // print('result   === ${result.toString()}');

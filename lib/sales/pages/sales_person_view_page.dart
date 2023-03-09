@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:http/http.dart' as http;
 import '../../config/theme.dart';
 import '../../login.dart';
+import '../../models/sales_person_model.dart';
 
 class SalesPersonViewScreen extends StatefulWidget {
   const SalesPersonViewScreen({Key? key}) : super(key: key);
@@ -15,6 +18,42 @@ class SalesPersonViewScreen extends StatefulWidget {
 class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
 
   List<String> personList = ["AMIT PATNURKAR", "JAISHIRI AMRALE","AMIT PATNURKAR", "JAISHIRI AMRALE"];
+
+  List<SalesPerson> salesPersonLists =[];
+  bool salesPersonLoader = false;
+
+
+  @override
+  void initState() {
+    getSalesPersonData();
+    super.initState();
+  }
+
+  getSalesPersonData() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    print("_prefs.getInt('UserID') ${
+        _prefs.getInt('UserID')
+    }");
+    print("Connection.getLocation URL========== > https://fgapi.digidisruptors.in/api/FGCRM/GetSalesPersonData?UserID=${_prefs.getInt('UserID')}");
+    var response = await http.post(Uri.parse("https://fgapi.digidisruptors.in/api/FGCRM/GetSalesPersonData?UserID=${_prefs.getInt('UserID')}"));
+    // var response = await http.post(Uri.parse("https://fgapi.digidisruptors.in/api/FGCRM/GetSalesPersonData?UserID=2"));
+    // var results = json.decode(response.body);
+    var result = json.decode(response.body);
+    print('response == $result  ${response.body}');
+
+    SalesPersonList salesPersonList;
+    salesPersonList = (SalesPersonList.fromJson(result));
+
+    // MarkLocationModel markLocationModel = MarkLocationModel.fromJson(results);
+    setState(() {
+      salesPersonLists = salesPersonList.salesPersonList;
+      salesPersonLoader = true;
+      print("getLocationsList  ===============> ${salesPersonLists.length}");
+    });
+
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +67,12 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
           _logoutPopup(),
         ],
       ),
-      body: Padding(
+      body: salesPersonLoader == true?
+
+      salesPersonLists.isNotEmpty?
+
+
+      Padding(
         padding: const EdgeInsets.only(left: 12.0,right: 12,top: 20,bottom: 8),
         child: Column(children:  [
 
@@ -50,7 +94,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
                   borderRadius: BorderRadius.circular(8)
                 ),
                 child:  Center(
-                  child: Text("8", style: GoogleFonts.poppins(
+                  child: Text(salesPersonLists.length.toString(), style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -63,7 +107,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
           SizedBox(height: 20,),
           Expanded(
             child: SingleChildScrollView(
-              child: Column(children: personList.map((e) {
+              child: Column(children: salesPersonLists.map((salesPersonObj) {
                 return     Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
                   child: ClipRRect(
@@ -83,12 +127,12 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                                 children: [
-                                  Text(e, style: GoogleFonts.asul(
+                                  Text(salesPersonObj.salesPersonName!, style: GoogleFonts.asul(
                                       textStyle: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                           color: AppColors.whiteColor))),
-                                  Text("91%", style: GoogleFonts.asul(
+                                  Text(salesPersonObj.salesAchievedPercent != null ?salesPersonObj.salesAchievedPercent!.toStringAsFixed(0)+"%":"0"+"%", style: GoogleFonts.asul(
                                       textStyle: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
@@ -126,7 +170,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
                               ),
                               Expanded(
                                 flex: 8,
-                                child: Text("730",
+                                child: Text("${salesPersonObj.totalCount}",
                                     textAlign: TextAlign.end,
                                     style: GoogleFonts.asul(
                                     textStyle: const TextStyle(
@@ -163,7 +207,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
                                 ),
                                 Expanded(
                                   flex: 8,
-                                  child: Text("366 - 46%",
+                                  child: Text("${salesPersonObj.closeCount} - ${salesPersonObj.closedPIPercent != null ?salesPersonObj.closedPIPercent!.toStringAsFixed(0)+"%":"0"+"%"}",
                                       textAlign: TextAlign.end,
                                       style: GoogleFonts.asul(
                                       textStyle: const TextStyle(
@@ -198,7 +242,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
                                 ),
                                 Expanded(
                                   flex: 8,
-                                  child: Text("282 - 39%",
+                                  child: Text("${salesPersonObj.openCount} - ${salesPersonObj.openPIPercent != null ?salesPersonObj.openPIPercent!.toStringAsFixed(0)+"%":"0"+"%"}",
                                       textAlign: TextAlign.end,
                                       style: GoogleFonts.asul(
                                       textStyle: const TextStyle(
@@ -234,7 +278,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
                                 ),
                                 Expanded(
                                   flex: 8,
-                                  child: Text("112 - 15%",
+                                  child: Text("${salesPersonObj.cancelledCount} - ${salesPersonObj.cancelledPIPercent != null ?salesPersonObj.cancelledPIPercent!.toStringAsFixed(0)+"%":"0"+"%"}",
                                       textAlign: TextAlign.end,
                                       style: GoogleFonts.asul(
                                       textStyle: const TextStyle(
@@ -270,7 +314,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
                                 ),
                                 Expanded(
                                   flex: 8,
-                                  child: Text("30,00,00,000",
+                                  child: Text("${salesPersonObj.salesTarget}",
                                       textAlign: TextAlign.end,
                                       style: GoogleFonts.asul(
                                       textStyle: const TextStyle(
@@ -306,7 +350,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
                                 ),
                                 Expanded(
                                   flex: 8,
-                                  child: Text("21,88,81,824",
+                                  child: Text("${salesPersonObj.salesAmount}",
                                       textAlign: TextAlign.end,
                                       style: GoogleFonts.asul(
                                       textStyle: const TextStyle(
@@ -329,7 +373,17 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
 
 
         ],),
-      ),
+      ):Container(
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          child: Center(
+            child: Text("No data found!",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,fontSize: 20),),
+          )):Container(
+          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          child: Center(
+            child: CircularProgressIndicator(),
+          )),
 
     );
   }

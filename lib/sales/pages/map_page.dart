@@ -2,6 +2,7 @@ import 'package:background_location/background_location.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fg_glass_app/sales/pages/sales_person_view_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -138,15 +139,15 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     print('mark location lat ${markPosition.latitude} lng ${markPosition.longitude}');
     String location = await _getSingleGeocoding(markPosition.latitude, markPosition.longitude);
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    print("_prefs.getInt('id') ${
-        _prefs.getInt('id')
+    print("_prefs.getInt('UserID') ${
+        _prefs.getInt('UserID')
     }");
     var response = await http.post(Uri.parse(Connections.addMark), body: {
       'Location': '$location',
       'Latitude': '${markPosition.latitude}',
       'Longitude': '${markPosition.longitude}',
-      // 'UserID': '${_prefs.getInt('id')}',
-      'UserID': '2',
+      'UserID': '${_prefs.getInt('UserID')}',
+      // 'UserID': '2',
     });
     var results = json.decode(response.body);
     print('mark results $results');
@@ -154,13 +155,13 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     print('loction for visit $location');
     String strCurrentDate = newFormat.format(currentDate);
 
-    print("_prefs.getInt('id') ${
-        _prefs.getInt('id')
+    print("_prefs.getInt('UserID') ${
+        _prefs.getInt('UserID')
     }");
     var response2 = await http.post(Uri.parse(Connections.addVisit), body: {
       'Location': '$location',
-      // 'AddedBy' : '${_prefs.getInt('id')}',
-      'AddedBy' : '2',
+      'AddedBy' : '${_prefs.getInt('UserID')}',
+      // 'AddedBy' : '2',
       'VerticalID': "0",
       "DailyVisitDate": strCurrentDate,
       'NextActionDate':strCurrentDate
@@ -776,8 +777,8 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
             _startPosition!.longitude, endPosition.latitude, endPosition.longitude);
         SharedPreferences _prefs = await SharedPreferences.getInstance();
         var params = {
-          // 'userID': '${_prefs.getInt('id')}',
-          'userID': '2',
+          'userID': '${_prefs.getInt('UserID')}',
+          // 'userID': '2',
           'start': '${addresses[0]}',
           'end': '${addresses[1]}',
           "startCoords": {
@@ -914,7 +915,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     print("List of address ${addresses.length} ${addresses[0]} ${addresses[1]} ${box['distance']} ${box['path']}");
     var params = {
-      'userID': '${_prefs.getInt('id')}',
+      'userID': '${_prefs.getInt('UserID')}',
       'start': '${addresses[0]}',
       'end': '${addresses[1]}',
       "startCoords": {
@@ -1047,7 +1048,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
           InkWell(
               onTap: (){
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (BuildContext ctx) => MyHome(salesView: true,)));
+                    MaterialPageRoute(builder: (BuildContext ctx) => SalesPersonViewScreen( )));
               },
               child: Icon(Icons.menu)),
 

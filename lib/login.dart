@@ -33,8 +33,11 @@ class _LoginPageState extends State<LoginPage> {
     print("password $password");
     print("isMpin $isMpin");
     final response = await post(
-        Uri.parse(
-            'https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLogin'),
+      // old
+      // Uri.parse('https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLogin'),
+
+      // new
+        Uri.parse('https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLoginUser'),
         headers: <String, String>{
           'Accept': 'application/json',
         },
@@ -53,7 +56,10 @@ class _LoginPageState extends State<LoginPage> {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         preferences.setInt('UserID', results['UserID']);
         preferences.setInt('CustID', results['CustID']);
-        preferences.setString('Customer', results['Customer']);
+        if(results['Customer'] != null){
+          preferences.setString('Customer', results['Customer']);
+        }
+
       }
       Navigator.push(
           context, MaterialPageRoute(builder: (BuildContext ctx) => MPIN()));

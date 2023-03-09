@@ -8,6 +8,7 @@ import 'package:adobe_xd/page_link.dart';
 import './login.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
+import 'Dashboard.dart';
 import 'globalVariables.dart' as globals;
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -30,8 +31,11 @@ class _MPINState extends State<MPIN> {
   createLoginState(String emailId, String password, String mpin, String isMpin,
       String userId) async {
     final response = await post(
-        Uri.parse(
-            'https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLogin'),
+      // old
+      // Uri.parse('https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLogin'),
+
+      // new
+        Uri.parse('https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLoginUser'),
         headers: <String, String>{
           'Accept': 'application/json',
         },
@@ -46,17 +50,34 @@ class _MPINState extends State<MPIN> {
     if (response.statusCode == 200) {
       //print(response.body);
       //Navigator.pushNamed(context, DASHBOARD);
-
-
-      // Navigator.pushReplacement(context,
-      //     MaterialPageRoute(builder: (BuildContext ctx) => Dashboard()));
-
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext ctx) => MyHome(salesView: false,)));
       var results = json.decode(response.body);
+
+      print("results['LogType'] ================== > ${results['LogType']}");
+
+      if(results['LogType'] == "Customer"){
+        globals.custId = results['CustID'];
+        print(results['CustID']);
+        // Navigator.pushReplacement(context,
+        //     MaterialPageRoute(builder: (BuildContext ctx) => Dashboard()));
+
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+            Dashboard()), (Route<dynamic> route) => false);
+      }else{
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        preferences.setInt('UserID', results['UserID']);
+        // Navigator.pushReplacement(context,
+        //     MaterialPageRoute(builder: (BuildContext ctx) => MyHome()));
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+            MyHome()), (Route<dynamic> route) => false);
+      }
+
+
+
+
+
+
       //print('response == $results  ${response.body}');
-      globals.custId = results['CustID'];
-      print(results['CustID']);
+
       // return LoginResponse.fromJson(json.decode(response.body))
     } else {
      if (_mPinController.text == "") {
