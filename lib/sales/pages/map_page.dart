@@ -1,4 +1,4 @@
-import 'package:background_location/background_location.dart';
+// import 'package:background_location/background_location.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,6 @@ import 'home_page.dart';
 import 'location_search_screen.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
 class MapPage extends StatefulWidget {
 
 
@@ -37,18 +36,18 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
-  FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
+  // FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   bool? serviceEnabled;
   LocationPermission? permission;
   DateTime? _startTime, _endTime;
   final Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult>? _connectivitySubscription;
-
+  LocationSettings? locationSettings;
   GoogleMapController? _mapController;
   bool recordStarted = false;
   Position? _startPosition;
-  Position? _endPosition;
+  // Position? _endPosition;
   Position? _startPositionUpdated;
   BitmapDescriptor? _destIcon, _markerIcon, _allIcon;
   Set<Marker>? _markers = {};
@@ -56,6 +55,8 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
   Directions? _info;
   Timer? _timer;
   String totalDuration = "";
+
+  StreamSubscription<Position>? positionStream;
 
   TextEditingController startLocationController = TextEditingController();
   TextEditingController endLocationController = TextEditingController();
@@ -65,6 +66,8 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
   var monthFormat = DateFormat("MMM");
 
   final StopWatchTimer _stopWatchTimer = StopWatchTimer();
+
+  get onDidReceiveNotificationResponse => null;
   disposeWatch() async {
     await _stopWatchTimer.dispose();
   }
@@ -466,14 +469,8 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
       textColor: Colors.white,
       fontSize: 16,
     );
-    _showNotification();
-    await BackgroundLocation.setAndroidNotification(
-      title: "Infinity",
-      message: "Location tracking in progress",
-      icon: "@mipmap/ic_launcher",
-    );
-    BackgroundLocation.setAndroidConfiguration(100);
-    // await BackgroundLocation.startLocationService(distanceFilter: 20,forceAndroidLocationManager: true);
+    // _showNotification();
+
     var box = await Hive.openBox(Connections.locations);
     var currentAllLocations = await Hive.openBox(Connections.currentAllLocations);
     currentAllLocations.add({'lat': _startPosition!.latitude, 'lng': _startPosition!.longitude});
@@ -497,53 +494,91 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
 
 
 
-    BackgroundLocation.getLocationUpdates((location) async {
-      // print('background location later on count is lat ${location.latitude} long ${location.longitude}');
-      _mapController!.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(location.latitude!, location.longitude!), zoom: 18),
-        ),
-      );
-      // box.add({'lat': location.latitude, 'long': location.longitude});
-      // print("object box values start ${box.length}");
-    });
+    locationSettings = AndroidSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 10,
+        // timeLimit : Duration(seconds: 5),
+        forceLocationManager: true,
+        // intervalDuration: const Duration(seconds: 5),
+
+        //(Optional) Set foreground notification config to keep the app alive
+        //when going to the background
+        foregroundNotificationConfig: const ForegroundNotificationConfig(
+          notificationText:
+          "Location tracking in progress",
+          notificationTitle: "FG glassPRO",
+          enableWakeLock: true,
+        )
+    );
+    // }
+
+    positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+            (Position? position) {
+          print("positionStream  ========================>  ${position!.latitude.toString()}");
+          print(position == null ? 'Unknown' : '======================> ${position.latitude.toString()}, ${position.longitude.toString()}');
+
+
+          _mapController!.animateCamera(
+            CameraUpdate.newCameraPosition(
+              CameraPosition(target: LatLng(position.latitude, position.longitude), zoom: 18),
+            ),
+          );
+
+
+
+          currentAllLocations.add({'lat': position.latitude, 'lng': position.longitude});
+
+
+          Marker allMarker = Marker(
+            markerId: MarkerId('${position.latitude}'),
+            position: LatLng(
+              position.latitude,
+              position.longitude,
+            ),
+            infoWindow: const InfoWindow(title: 'Start'),
+            icon: _allIcon!,
+          );
+
+          _markers!.add(allMarker);
+
+          setState(() {
+
+          });
+
+
+            });
+
+
+
+
+
+
+
+    // await BackgroundLocation.setAndroidNotification(
+    //   title: "Infinity",
+    //   message: "Location tracking in progress",
+    //   icon: "@mipmap/ic_launcher",
+    // );
+    // // BackgroundLocation.setAndroidConfiguration(100);
+    // await BackgroundLocation.startLocationService(distanceFilter: 10);
+    // BackgroundLocation.getLocationUpdates((location) async {
+    //   // print('background location later on count is lat ${location.latitude} long ${location.longitude}');
+    //   _mapController!.animateCamera(
+    //     CameraUpdate.newCameraPosition(
+    //       CameraPosition(target: LatLng(location.latitude!, location.longitude!), zoom: 18),
+    //     ),
+    //   );
+    //   // box.add({'lat': location.latitude, 'long': location.longitude});
+    //   print("object box values start ${box.length}");
+    // });
 
     // bg.BackgroundGeolocation.onLocation((bg.Location location) {
     //   print('[location] - $location');
-    //   // _mapController!.animateCamera(
-    //   //   CameraUpdate.newCameraPosition(
-    //   //     CameraPosition(target: LatLng(location.latitude, location.longitude), zoom: 18),
-    //   //   ),
-    //   // );
-    // });
-    //
-    // // Fired whenever the plugin changes motion-state (stationary->moving and vice-versa)
-    // bg.BackgroundGeolocation.onMotionChange((bg.Location location) {
-    //   print('[motionchange] - $location');
-    // });
-    //
-    // // Fired whenever the state of location-services changes.  Always fired at boot
-    // bg.BackgroundGeolocation.onProviderChange((bg.ProviderChangeEvent event) {
-    //   print('[providerchange] - $event');
-    // });
-    //
-    // ////
-    // // 2.  Configure the plugin
-    // //
-    // bg.BackgroundGeolocation.ready(bg.Config(
-    //     desiredAccuracy: bg.Config.DESIRED_ACCURACY_HIGH,
-    //     distanceFilter: 10.0,
-    //     stopOnTerminate: false,
-    //     startOnBoot: true,
-    //     debug: true,
-    //     logLevel: bg.Config.LOG_LEVEL_VERBOSE
-    // )).then((bg.State state) {
-    //   if (!state.enabled) {
-    //     ////
-    //     // 3.  Start the plugin.
-    //     //
-    //     bg.BackgroundGeolocation.start();
-    //   }
+    //   _mapController!.animateCamera(
+    //     CameraUpdate.newCameraPosition(
+    //       CameraPosition(target: LatLng(location.latitude, location.longitude), zoom: 18),
+    //     ),
+    //   );
     // });
 
 
@@ -552,182 +587,232 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     // String wayPoints="";
 
 
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) async {
-      // setState(() {
-
-      // });
-      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
-      // print('background location later on count is lat ${position.latitude} long ${position.longitude}');
-      // print("DateTime.now() ---${DateTime.now()}");
-      // box.add({'lat': position.latitude, 'long': position.longitude});
-      // print("object box values start ${box.length}");
-
-
-      // _startPosition22 = Position(
-      //   latitude: position.latitude,
-      //   longitude: position.longitude,
-      //   timestamp: DateTime.now(),
-      //   speed: position.speed,
-      //   heading: position.heading,
-      //   accuracy: position.accuracy,
-      //   altitude: position.altitude,
-      //   speedAccuracy: position.speedAccuracy,
-      // );
-
-      currentAllLocations.add({'lat': position.latitude, 'lng': position.longitude});
-
-
-      Marker allMarker = Marker(
-        markerId: MarkerId('${position.latitude}'),
-        position: LatLng(
-          position.latitude,
-          position.longitude,
-        ),
-        infoWindow: const InfoWindow(title: 'Start'),
-        icon: _allIcon!,
-      );
-
-      _markers!.add(allMarker);
-
-      setState(() {
-
-      });
-
-      // latLogAllList.add(LatLng(_startPosition22.latitude, _startPosition22.longitude));
-      //
-      // setState(() {
-      //   PolylineId id = const PolylineId('poly');
-      //   Polyline polyline = Polyline(
-      //     polylineId: id,
-      //     color: Colors.red,
-      //     // points: _info.data.paths[0].polylinePoints
-      //     //     .map((e) => LatLng(e.longitude, e.longitude))
-      //     //     .toList()
-      //
-      //
-      //     points: latLogAllList
-      //         .map((e) => LatLng(e.latitude, e.longitude))
-      //         .toList(),
-      //     width: 3,
-      //   );
-      //   // setState(() {
-      //   //
-      //   // });
-      //   _mapPolyLines[id] = polyline;
-      // });
-
-
-
-
-
-      // latLogAllList.clear();
-      //
-      // _startPosition22 = Position(
-      //   latitude: position.latitude,
-      //   longitude: position.longitude,
-      //   timestamp: DateTime.now(),
-      //   speed: position.speed,
-      //   heading: position.heading,
-      //   accuracy: position.accuracy,
-      //   altitude: position.altitude,
-      //   speedAccuracy: position.speedAccuracy,
-      // );
-      //
-      // latLogAllList.add(LatLng(_startPosition22.latitude, _startPosition22.longitude));
-
-
-      // wayPoints=wayPoints + position.latitude.toString() +","+ position.longitude.toString() + '|';
-      // currentAllLocations.add(
-      //     {'lat': position.latitude, 'lng': position.longitude});
-      // //
-      //
-      //
-      // if(wPoints == 99){
-      //
-      //   print("wPoints ============ ${wPoints}");
-      //   // for (int i = 0; i < latLogList.length; i++) {
-      //
-      //
-      //   // wayPoints=wayPoints + '{"lat":"${latLogList[i].latitude.toString()}","lng":"${latLogList[i].longitude.toString()}"}' + ',';
-      //   // }20.3658692
-      //
-      //   print("_startPositionUpdated ${_startPosition.latitude} , ${_startPosition.longitude}");
-      //   print("endPosition ${position.latitude} , ${position.longitude}");
-      //   print("wayPoints $wayPoints");
-      //   String result = wayPoints.substring(0, wayPoints.length - 1);
-      //   print("result -- $result");
-      //   wPoints = 0;
-      //   wayPoints = "";
-      //   lastLocationList.clear();
-      //   Roads directions = (await DirectionBloc()
-      //       .getDirections(origin: LatLng(_startPosition.latitude, _startPosition.longitude), destination: LatLng(position.latitude, position.longitude),waypoints: result)) as Roads;
-      //   //
-      //   // _startPositionUpdated = Position(
-      //   //   latitude: directions.polylinePoints.last.latitude,
-      //   //   longitude: directions.polylinePoints.last.longitude,
-      //   //   timestamp: DateTime.now(),
-      //   //   speed: position.speed,
-      //   //   heading: position.heading,
-      //   //   accuracy: position.accuracy,
-      //   //   altitude: position.altitude,
-      //   //   speedAccuracy: position.speedAccuracy,
-      //   // );
-      //
-      //
-      //   // Road Api Respone
-      //   //
-      //   for(int i =0;i<directions.snappedPoints.length;i++) {
-      //     multiLocations.add(
-      //         {'lat': directions.snappedPoints[i].location.latitude, 'lng': directions.snappedPoints[i].location.longitude});
-      //   }
-      //
-      //   // Direction Api Respone
-      //
-      //   // for(int i =0;i<directions.polylinePoints.length;i++) {
-      //   //   multiLocations.add(
-      //   //       {'lat': directions.polylinePoints[i].latitude, 'lng': directions.polylinePoints[i].longitude});
-      //   // }
-      //
-      //
-      //
-      //
-      //
-      //
-      // }else{
-      //   print("wPoints $wPoints");
-      //   lastLocationList.add({'lat': position.latitude, 'lng': position.longitude});
-      //
-      //
-      // }
-      //
-      // wPoints = wPoints + 1;
-    });
+    // _timer = Timer.periodic(const Duration(seconds: 5), (timer) async {
+    //   // setState(() {
+    //
+    //   // });
+    //   Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
+    //
+    //   _mapController!.animateCamera(
+    //     CameraUpdate.newCameraPosition(
+    //       CameraPosition(target: LatLng(position.latitude, position.longitude), zoom: 18),
+    //     ),
+    //   );
+    //   // print('background location later on count is lat ${position.latitude} long ${position.longitude}');
+    //   // print("DateTime.now() ---${DateTime.now()}");
+    //   // box.add({'lat': position.latitude, 'long': position.longitude});
+    //   // print("object box values start ${box.length}");
+    //
+    //
+    //   // _startPosition22 = Position(
+    //   //   latitude: position.latitude,
+    //   //   longitude: position.longitude,
+    //   //   timestamp: DateTime.now(),
+    //   //   speed: position.speed,
+    //   //   heading: position.heading,
+    //   //   accuracy: position.accuracy,
+    //   //   altitude: position.altitude,
+    //   //   speedAccuracy: position.speedAccuracy,
+    //   // );
+    //
+    //   // if(positionStream != null){
+    //
+    //
+    //   currentAllLocations.add({'lat': position.latitude, 'lng': position.longitude});
+    //
+    //   print("marker =============== {'lat': ${position.latitude}, 'lng': ${position.longitude}}");
+    //
+    //
+    //   Marker allMarker = Marker(
+    //     markerId: MarkerId('${position.latitude}'),
+    //     position: LatLng(
+    //       position.latitude,
+    //       position.longitude,
+    //     ),
+    //     infoWindow: const InfoWindow(title: 'Start'),
+    //     icon: _allIcon!,
+    //   );
+    //
+    //   _markers!.add(allMarker);
+    //
+    //   setState(() {
+    //
+    //   });
+    //
+    //   // latLogAllList.add(LatLng(_startPosition22.latitude, _startPosition22.longitude));
+    //   //
+    //   // setState(() {
+    //   //   PolylineId id = const PolylineId('poly');
+    //   //   Polyline polyline = Polyline(
+    //   //     polylineId: id,
+    //   //     color: Colors.red,
+    //   //     // points: _info.data.paths[0].polylinePoints
+    //   //     //     .map((e) => LatLng(e.longitude, e.longitude))
+    //   //     //     .toList()
+    //   //
+    //   //
+    //   //     points: latLogAllList
+    //   //         .map((e) => LatLng(e.latitude, e.longitude))
+    //   //         .toList(),
+    //   //     width: 3,
+    //   //   );
+    //   //   // setState(() {
+    //   //   //
+    //   //   // });
+    //   //   _mapPolyLines[id] = polyline;
+    //   // });
+    //
+    //
+    //
+    //
+    //
+    //   // latLogAllList.clear();
+    //   //
+    //   // _startPosition22 = Position(
+    //   //   latitude: position.latitude,
+    //   //   longitude: position.longitude,
+    //   //   timestamp: DateTime.now(),
+    //   //   speed: position.speed,
+    //   //   heading: position.heading,
+    //   //   accuracy: position.accuracy,
+    //   //   altitude: position.altitude,
+    //   //   speedAccuracy: position.speedAccuracy,
+    //   // );
+    //   //
+    //   // latLogAllList.add(LatLng(_startPosition22.latitude, _startPosition22.longitude));
+    //
+    //
+    //   // wayPoints=wayPoints + position.latitude.toString() +","+ position.longitude.toString() + '|';
+    //   // currentAllLocations.add(
+    //   //     {'lat': position.latitude, 'lng': position.longitude});
+    //   // //
+    //   //
+    //   //
+    //   // if(wPoints == 99){
+    //   //
+    //   //   print("wPoints ============ ${wPoints}");
+    //   //   // for (int i = 0; i < latLogList.length; i++) {
+    //   //
+    //   //
+    //   //   // wayPoints=wayPoints + '{"lat":"${latLogList[i].latitude.toString()}","lng":"${latLogList[i].longitude.toString()}"}' + ',';
+    //   //   // }20.3658692
+    //   //
+    //   //   print("_startPositionUpdated ${_startPosition.latitude} , ${_startPosition.longitude}");
+    //   //   print("endPosition ${position.latitude} , ${position.longitude}");
+    //   //   print("wayPoints $wayPoints");
+    //   //   String result = wayPoints.substring(0, wayPoints.length - 1);
+    //   //   print("result -- $result");
+    //   //   wPoints = 0;
+    //   //   wayPoints = "";
+    //   //   lastLocationList.clear();
+    //   //   Roads directions = (await DirectionBloc()
+    //   //       .getDirections(origin: LatLng(_startPosition.latitude, _startPosition.longitude), destination: LatLng(position.latitude, position.longitude),waypoints: result)) as Roads;
+    //   //   //
+    //   //   // _startPositionUpdated = Position(
+    //   //   //   latitude: directions.polylinePoints.last.latitude,
+    //   //   //   longitude: directions.polylinePoints.last.longitude,
+    //   //   //   timestamp: DateTime.now(),
+    //   //   //   speed: position.speed,
+    //   //   //   heading: position.heading,
+    //   //   //   accuracy: position.accuracy,
+    //   //   //   altitude: position.altitude,
+    //   //   //   speedAccuracy: position.speedAccuracy,
+    //   //   // );
+    //   //
+    //   //
+    //   //   // Road Api Respone
+    //   //   //
+    //   //   for(int i =0;i<directions.snappedPoints.length;i++) {
+    //   //     multiLocations.add(
+    //   //         {'lat': directions.snappedPoints[i].location.latitude, 'lng': directions.snappedPoints[i].location.longitude});
+    //   //   }
+    //   //
+    //   //   // Direction Api Respone
+    //   //
+    //   //   // for(int i =0;i<directions.polylinePoints.length;i++) {
+    //   //   //   multiLocations.add(
+    //   //   //       {'lat': directions.polylinePoints[i].latitude, 'lng': directions.polylinePoints[i].longitude});
+    //   //   // }
+    //   //
+    //   //
+    //   //
+    //   //
+    //   //
+    //   //
+    //   // }else{
+    //   //   print("wPoints $wPoints");
+    //   //   lastLocationList.add({'lat': position.latitude, 'lng': position.longitude});
+    //   //
+    //   //
+    //   // }
+    //   //
+    //   // wPoints = wPoints + 1;
+    // });
 
 
   }
 
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition();
+  }
+
   _stopRecording() async {
-    flutterLocalNotificationsPlugin!.cancel(0);
+    // flutterLocalNotificationsPlugin!.cancel(0);
+    await positionStream!.cancel();
     // await BackgroundLocation.stopLocationService();
     lastLat = 0;
     lastLong = 0;
-    _timer!.cancel();
-    // var currentAllLocations = await Hive.openBox(Connections.currentAllLocations);
-    // currentAllLocations.add({'lat': _endPosition.latitude, 'lng': _endPosition.longitude});
-    // Position endPosition = await Geolocator
-    //     .getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
-    print('location on end clicked lat ${_endPosition!.latitude} lng ${_endPosition!.longitude}');
+    // _timer!.cancel();
+    Position endPosition = await Geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
+    var currentAllLocations = await Hive.openBox(Connections.currentAllLocations);
+    currentAllLocations.add({'lat': endPosition.latitude, 'lng': endPosition.longitude});
+
+    print('location on end clicked lat ${endPosition.latitude} lng ${endPosition.longitude}');
     Marker stopMarker = Marker(
-      markerId: MarkerId('$_endPosition'),
-      position: LatLng(_endPosition!.latitude, _endPosition!.longitude),
+      markerId: MarkerId('$endPosition'),
+      position: LatLng(endPosition.latitude, endPosition.longitude),
       infoWindow: const InfoWindow(title: 'Stop'),
       icon: _destIcon!,
     );
     _markers!.add(stopMarker);
     var box = await Hive.openBox(Connections.locations);
-    box.add({'lat': _endPosition!.latitude, 'long': _endPosition!.longitude});
+    box.add({'lat': endPosition.latitude, 'long': endPosition.longitude});
     // print("object box values on stop ${box.length}");
-    _createPolyLines(_endPosition!);
+    _createPolyLines(endPosition);
 
 
 
@@ -838,51 +923,79 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     }
   }
 
-  _showNotification() async {
-     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    final AndroidInitializationSettings initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+  // _showNotification() async {
+  //
+  //   final AndroidInitializationSettings initializationSettingsAndroid =
+  //   AndroidInitializationSettings('@mipmap/ic_launcher');
+  //
+  //   // final IOSInitializationSettings initializationSettingsIOS =
+  //   // IOSInitializationSettings(
+  //   //   requestSoundPermission: false,
+  //   //   requestBadgePermission: false,
+  //   //   requestAlertPermission: false,
+  //   //   onDidReceiveLocalNotification: onDidReceiveLocalNotification,
+  //   // );
+  //
+  //   final InitializationSettings initializationSettings =
+  //   InitializationSettings(
+  //       android: initializationSettingsAndroid,
+  //       // iOS: initializationSettingsIOS,
+  //       macOS: null);
+  //
+  //   await flutterLocalNotificationsPlugin!.initialize(initializationSettings,
+  //       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,onDidReceiveBackgroundNotificationResponse: onDidReceiveNotificationResponse
+  //
+  //   );
+  //
+  //   const AndroidNotificationDetails androidNotificationDetails =
+  //   AndroidNotificationDetails('0', 'your channel name',
+  //       channelDescription: 'your channel description',
+  //       importance: Importance.max,
+  //       priority: Priority.high,
+  //       ticker: 'ticker',
+  //       autoCancel: false,
+  //       ongoing:true,
+  //
+  //
+  //
+  //   );
+  //   const NotificationDetails notificationDetails =
+  //   NotificationDetails(android: androidNotificationDetails);
+  //   await flutterLocalNotificationsPlugin!.show(
+  //       0, "Infinity", "Location tracking in progress", notificationDetails,
+  //       // payload: message.data["page"]
+  //   );
+  //
+  //
+  //
+  // }
 
-    // final IOSInitializationSettings initializationSettingsIOS =
-    // IOSInitializationSettings(
-    //   requestSoundPermission: false,
-    //   requestBadgePermission: false,
-    //   requestAlertPermission: false,
-    //   onDidReceiveLocalNotification: onDidReceiveLocalNotification,
-    // );
-
-    final InitializationSettings initializationSettings =
-    InitializationSettings(
-        android: initializationSettingsAndroid,
-        // iOS: initializationSettingsIOS,
-        macOS: null);
-
-    await flutterLocalNotificationsPlugin!.initialize(initializationSettings,
-        // onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,onDidReceiveBackgroundNotificationResponse: onDidReceiveNotificationResponse
-
-    );
-
-    const AndroidNotificationDetails androidNotificationDetails =
-    AndroidNotificationDetails('0', 'your channel name',
-        channelDescription: 'your channel description',
-        importance: Importance.max,
-        priority: Priority.high,
-        ticker: 'ticker',
-        autoCancel: false,
-        ongoing:true
-
-
-    );
-    const NotificationDetails notificationDetails =
-    NotificationDetails(android: androidNotificationDetails);
-    await flutterLocalNotificationsPlugin!.show(
-        0, "Infinity", "Location tracking in progress", notificationDetails,
-        // payload: message.data["page"]
-    );
-
-
-
-  }
+  // void onDidReceiveLocalNotification(
+  //     int id, String title, String body, String payload) async {
+  //   // display a dialog with the notification details, tap ok to go to another page
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) => CupertinoAlertDialog(
+  //       title: Text(title),
+  //       content: Text(body),
+  //       actions: [
+  //         CupertinoDialogAction(
+  //           isDefaultAction: true,
+  //           child: Text('Ok'),
+  //           onPressed: () async {
+  //             Navigator.of(context, rootNavigator: true).pop();
+  //             await Navigator.push(
+  //               context,
+  //               MaterialPageRoute(
+  //                 builder: (context) => SecondScreen(payload),
+  //               ),
+  //             );
+  //           },
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 
   // final directions = await DirectionBloc()
   //     .getDirections(origin: LatLng(_startPosition.latitude, _startPosition.longitude), destination: LatLng(endPosition.latitude, endPosition.longitude));
@@ -998,7 +1111,8 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
-
+    // flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    // _determinePosition();
     BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(devicePixelRatio: 2.5),
         'assets/images/place.png').then((onValue) {
@@ -1025,6 +1139,9 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     });
   }
 
+
+
+
   @override
   void dispose() {
     _connectivitySubscription!.cancel();
@@ -1033,6 +1150,8 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     super.dispose();
     disposeWatch();
   }
+
+
 
   @override
   // ignore: must_call_super
@@ -1066,20 +1185,20 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: Colors.black.withOpacity(0.5)
-                          // gradient: LinearGradient(
-                          //     colors: [Colors.redAccent, Colors.orange],
-                          //     begin: Alignment.topLeft,
-                          //     end: Alignment.bottomRight)
-                        ),
-                        height: 50,
-                        child: Center(child: Text("Total Distance : $totalDuration",style: TextStyle(color: Colors.white,fontSize: 16),)),
-                      ),
-                      SizedBox(height: 14,),
+                      // Container(
+                      //
+                      //   decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(10.0),
+                      //       color: Colors.black.withOpacity(0.5)
+                      //     // gradient: LinearGradient(
+                      //     //     colors: [Colors.redAccent, Colors.orange],
+                      //     //     begin: Alignment.topLeft,
+                      //     //     end: Alignment.bottomRight)
+                      //   ),
+                      //   height: 50,
+                      //   child: Center(child: Text("Total Distance : $totalDuration",style: TextStyle(color: Colors.white,fontSize: 16),)),
+                      // ),
+                      // SizedBox(height: 14,),
                       SizedBox(width: double.infinity,
                         child: CupertinoButton(color: Colors.blue,
                           child: const Text('Stop'),
@@ -1127,101 +1246,101 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        child: TextFormField(
-                          readOnly: true,
-                          // focusNode: myFocusNode,
-                          textAlign: TextAlign.start,
-                          // keyboardType: TextInputType.phone,
-                          textInputAction: TextInputAction.done,
-                          onTap: () async {
-                            Place result = await  Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) =>  const LocationSearchScreen()),
-                            );
-                            if(result != null){
-                              FocusManager.instance.primaryFocus?.unfocus();
-                              final geolocation = await result.geolocation;
-                              final latLng = LatLng(geolocation?.coordinates?.latitude,geolocation?.coordinates?.longitude);
-                              //
-                              // print("_startPosition ========> ${_startPosition.latitude}");
-                              // print("_startPosition ========> ${_startPosition.longitude}");
-                              //
-                              print("end latitude ========> ${latLng.latitude}");
-                              print("end longitude ========> ${latLng.longitude}");
-                              endLocationController.text = result.description;
-
-                              setState(() {
-                                FocusManager.instance.primaryFocus?.unfocus();
-                                _endPosition = Position(
-                                  latitude: latLng.latitude,
-                                  longitude: latLng.longitude,
-                                  timestamp: DateTime.now(),
-                                  speed: 0,
-                                  heading: 0,
-                                  accuracy: 0,
-                                  altitude: 0,
-                                  speedAccuracy: 0,
-                                );
-
-                              });
-
-                            }
-
-                          },
-
-                          controller: endLocationController,
-                          // obscureText: controller.showPassword.value,
-                          // style: GoogleFonts.inriaSans(textStyle: TextStyle(fontSize: 14,color: AppColors.black)),
-                          // cursorColor: AppColors.appText1,
-                          decoration: InputDecoration(
-                            // labelStyle : GoogleFonts.inriaSans(textStyle: TextStyle(fontSize: 12)),
-                            // labelStyle: TextStyle(
-                            //     color: myFocusNode.hasFocus ? Colors.purple : AppColors.appText1
-                            // ),
-                            contentPadding: EdgeInsets.only(left:18,bottom: 18,top: 18,right: 16),
-
-                            // suffixIcon: IconButton(
-                            //     onPressed: () {
-                            //       controller.toggleShowPassword();
-                            //     },
-                            //     icon: controller.showPassword.value
-                            //         ? Icon(Icons.visibility_off)
-                            //         : Icon(Icons.visibility)),
-
-                            // hintStyle: GoogleFonts.inriaSans(textStyle: TextStyle(fontSize: 12)),
-
-
-                            hintText: 'Enter Stop Location',
-                            // labelText: 'End Location',
-                            filled: true,
-
-                            fillColor: Colors.grey.shade200,
-                            // enabledBorder:OutlineInputBorder(
-                            //   borderSide: const BorderSide(color: AppColors.appText1, width: 1.0),
-                            //   borderRadius: BorderRadius.circular(2.0),
-                            //
-                            // ),
-                            // focusedBorder:OutlineInputBorder(
-                            //   borderSide: const BorderSide(color: AppColors.appText1, width: 1.0),
-                            //   borderRadius: BorderRadius.circular(2.0),
-                            // ),
-                            // labelStyle:  GoogleFonts.inriaSans(textStyle: TextStyle(fontSize: 15))
-
-                            border: OutlineInputBorder(),
-
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 14,),
+                      // Container(
+                      //   child: TextFormField(
+                      //     readOnly: true,
+                      //     // focusNode: myFocusNode,
+                      //     textAlign: TextAlign.start,
+                      //     // keyboardType: TextInputType.phone,
+                      //     textInputAction: TextInputAction.done,
+                      //     onTap: () async {
+                      //       Place result = await  Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(builder: (context) =>  const LocationSearchScreen()),
+                      //       );
+                      //       if(result != null){
+                      //         FocusManager.instance.primaryFocus?.unfocus();
+                      //         final geolocation = await result.geolocation;
+                      //         final latLng = LatLng(geolocation?.coordinates?.latitude,geolocation?.coordinates?.longitude);
+                      //         //
+                      //         // print("_startPosition ========> ${_startPosition.latitude}");
+                      //         // print("_startPosition ========> ${_startPosition.longitude}");
+                      //         //
+                      //         print("end latitude ========> ${latLng.latitude}");
+                      //         print("end longitude ========> ${latLng.longitude}");
+                      //         endLocationController.text = result.description;
+                      //
+                      //         setState(() {
+                      //           FocusManager.instance.primaryFocus?.unfocus();
+                      //           _endPosition = Position(
+                      //             latitude: latLng.latitude,
+                      //             longitude: latLng.longitude,
+                      //             timestamp: DateTime.now(),
+                      //             speed: 0,
+                      //             heading: 0,
+                      //             accuracy: 0,
+                      //             altitude: 0,
+                      //             speedAccuracy: 0,
+                      //           );
+                      //
+                      //         });
+                      //
+                      //       }
+                      //
+                      //     },
+                      //
+                      //     controller: endLocationController,
+                      //     // obscureText: controller.showPassword.value,
+                      //     // style: GoogleFonts.inriaSans(textStyle: TextStyle(fontSize: 14,color: AppColors.black)),
+                      //     // cursorColor: AppColors.appText1,
+                      //     decoration: InputDecoration(
+                      //       // labelStyle : GoogleFonts.inriaSans(textStyle: TextStyle(fontSize: 12)),
+                      //       // labelStyle: TextStyle(
+                      //       //     color: myFocusNode.hasFocus ? Colors.purple : AppColors.appText1
+                      //       // ),
+                      //       contentPadding: EdgeInsets.only(left:18,bottom: 18,top: 18,right: 16),
+                      //
+                      //       // suffixIcon: IconButton(
+                      //       //     onPressed: () {
+                      //       //       controller.toggleShowPassword();
+                      //       //     },
+                      //       //     icon: controller.showPassword.value
+                      //       //         ? Icon(Icons.visibility_off)
+                      //       //         : Icon(Icons.visibility)),
+                      //
+                      //       // hintStyle: GoogleFonts.inriaSans(textStyle: TextStyle(fontSize: 12)),
+                      //
+                      //
+                      //       hintText: 'Enter Stop Location',
+                      //       // labelText: 'End Location',
+                      //       filled: true,
+                      //
+                      //       fillColor: Colors.grey.shade200,
+                      //       // enabledBorder:OutlineInputBorder(
+                      //       //   borderSide: const BorderSide(color: AppColors.appText1, width: 1.0),
+                      //       //   borderRadius: BorderRadius.circular(2.0),
+                      //       //
+                      //       // ),
+                      //       // focusedBorder:OutlineInputBorder(
+                      //       //   borderSide: const BorderSide(color: AppColors.appText1, width: 1.0),
+                      //       //   borderRadius: BorderRadius.circular(2.0),
+                      //       // ),
+                      //       // labelStyle:  GoogleFonts.inriaSans(textStyle: TextStyle(fontSize: 15))
+                      //
+                      //       border: OutlineInputBorder(),
+                      //
+                      //     ),
+                      //   ),
+                      // ),
+                      // SizedBox(height: 14,),
                       SizedBox(width: double.infinity,
                         child: CupertinoButton(color: Colors.blue,
                             child: const Text('Start'),
                             onPressed: () async {
 
-                          if(endLocationController.text == ""){
-                            Alerts.showAlert(context, 'Stop Location', 'Please enter stop location');
-                          }else{
+                          // if(endLocationController.text == ""){
+                          //   Alerts.showAlert(context, 'Stop Location', 'Please enter stop location');
+                          // }else{
                             serviceEnabled = await Geolocator.isLocationServiceEnabled();
                             if (!serviceEnabled!) {
                               Alerts.showAlert(context, 'Location Disabled',
@@ -1248,25 +1367,25 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
                             print("_startPosition ========> ${_startPosition!.latitude}");
                             print("_startPosition ========> ${_startPosition!.longitude}");
 
-                            print("_endPosition ========> ${_endPosition!.latitude}");
-                            print("_endPosition ========> ${_endPosition!.longitude}");
+                            // print("_endPosition ========> ${_endPosition!.latitude}");
+                            // print("_endPosition ========> ${_endPosition!.longitude}");
 
-                            final directions = (await DirectionBloc()
-                                .getDirections(origin: LatLng(_startPosition!.latitude, _startPosition!.longitude), destination: LatLng(_endPosition!.latitude, _endPosition!.longitude),waypoints: "result"));
-                            print("directions ==============> ${directions.totalDistance}");
-
+                            // final directions = (await DirectionBloc()
+                            //     .getDirections(origin: LatLng(_startPosition!.latitude, _startPosition!.longitude), destination: LatLng(_endPosition!.latitude, _endPosition!.longitude),waypoints: "result"));
+                            // print("directions ==============> ${directions.totalDistance}");
+                            //
 
                             setState(() {
-                              _info = directions;
+                              // _info = directions;
                               recordStarted = true;
-                              totalDuration = directions.totalDistance.toString();
+                              // totalDuration = directions.totalDistance.toString();
                             });
 
 
                             _stopWatchTimer.onExecute.add(StopWatchExecute.reset);
                             _stopWatchTimer.onExecute.add(StopWatchExecute.start);
                             _startRecording();
-                          }
+                          // }
 
                             }),
                       ),
@@ -1526,36 +1645,51 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
   //================================================
 
   _createPolyLines(Position endPosition) async {
-
+    var temp = await Hive.openBox(Connections.temp);
     var allPoints = await _createAllPoints();
     List<LatLng> latLogAllList = <LatLng>[];
+    List<Map<String, double>> polyPoints = [];
     // print("points returned ${allPoints.length} \n ${allPoints[0]} \n ${allPoints[1]} \n ${allPoints[2]}   ");
     latLogAllList = allPoints[2];
+
+    for(int i=0;i<latLogAllList.length;i++){
+      Map<String, double> p = {
+        'lat': latLogAllList[i].latitude,
+        'lng': latLogAllList[i].longitude
+      };
+      polyPoints.add(p);
+      temp.add({'lat': latLogAllList[i].latitude, 'lng': latLogAllList[i].longitude});
+    }
+
+
+
+
     setState(() {
 
       _endTime = DateTime.now();
-      PolylineId id = const PolylineId('overview_polyline');
-      Polyline polyline = Polyline(
-        polylineId: id,
-        color: Colors.red,
-        points: _info!.polylinePoints
-            .map((e) => LatLng(e.latitude, e.longitude))
-            .toList(),
-        width: 3,
-      );
-
-      //   PolylineId id = const PolylineId('poly');
+      // PolylineId id = const PolylineId('overview_polyline');
       // Polyline polyline = Polyline(
-      // polylineId: id,
-      // color: Colors.red,
-      // points: latLogAllList
-      //     .map((e) => LatLng(e.latitude, e.longitude))
-      //     .toList(),
-      // width: 3,
+      //   polylineId: id,
+      //   color: Colors.red,
+      //   points: _info!.polylinePoints
+      //       .map((e) => LatLng(e.latitude, e.longitude))
+      //       .toList(),
+      //   width: 3,
       // );
 
+        PolylineId id = const PolylineId('poly');
+      Polyline polyline = Polyline(
+      polylineId: id,
+      color: Colors.red,
+      points: latLogAllList
+          .map((e) => LatLng(e.latitude, e.longitude))
+          .toList(),
+      width: 3,
+      );
+
       _mapPolyLines[id] = polyline;
-      _addRoute(endPosition, allPoints[0], allPoints[1]);
+      // _addRoute(endPosition, allPoints[0], allPoints[1]);
+      _addRoute(endPosition, polyPoints, allPoints[1]);
     });
 
     print("_addRoute");
@@ -3017,7 +3151,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     List<Map<String, double>> polyPoints = [];
 
     var currentAllLocations = await Hive.openBox(Connections.currentAllLocations);
-    var temp = await Hive.openBox(Connections.temp);
+    // var temp = await Hive.openBox(Connections.temp);
     print("object length currentAllLocations ${currentAllLocations.length}");
 
     if (currentAllLocations.length > 0) {
@@ -3027,14 +3161,21 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     }
 
     for (int i = 0; i < currentAllLocations.length; i++) {
+      // print("currentAllLocations =============== {'lat': ${currentAllLocations.getAt(i)['lat']}, 'lng': ${currentAllLocations.getAt(i)['lng']}}");
       // print("object length of box currentAllLocations ${currentAllLocations.getAt(i)['lat']}\n");
       currentAllLocationsList.add(LatLng(currentAllLocations.getAt(i)['lat'], currentAllLocations.getAt(i)['lng']));
-      temp.add({'lat': currentAllLocations.getAt(i)['lat'], 'lng': currentAllLocations.getAt(i)['lng']});
-      Map<String, double> p = {
-        'lat': currentAllLocations.getAt(i)['lat'],
-        'lng': currentAllLocations.getAt(i)['lng']
-      };
-      polyPoints.add(p);
+      LatLng latLng = LatLng(currentAllLocations.getAt(i)['lat'], currentAllLocations.getAt(i)['lng']);
+      // temp.add({'lat': currentAllLocations.getAt(i)['lat'], 'lng': currentAllLocations.getAt(i)['lng']});
+      // temp.add({'lat': latLng.latitude, 'lng': latLng.longitude});
+      // Map<String, double> p = {
+      //   'lat': currentAllLocations.getAt(i)['lat'],
+      //   'lng': currentAllLocations.getAt(i)['lng']
+      // };
+      // Map<String, double> p = {
+      //   'lat': latLng.latitude,
+      //   'lng': latLng.longitude
+      // };
+      // polyPoints.add(p);
 
       // double distance = _coordinateDistance(
       //     lastLat,
@@ -3067,6 +3208,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     await currentAllLocations.deleteFromDisk();
     return [polyPoints,totalDistance.toStringAsFixed(2),currentAllLocationsList];
   }
+
   double _coordinateDistance(lat1, lon1, lat2, lon2) {
     var p = 0.017453292519943295;
     var a = 0.5 - cos((lat2 - lat1) * p) / 2 +

@@ -233,7 +233,7 @@ class _MapRecordPageState extends State<MapRecordPage> {
                 zoom: 18)
             : CameraPosition(
                 target: LatLng(widget.mark.lat!, widget.mark.lng!), zoom: 18),
-        myLocationEnabled: true,
+        myLocationEnabled: false,
         myLocationButtonEnabled: false,
         mapType: MapType.normal,
         zoomGesturesEnabled: true,

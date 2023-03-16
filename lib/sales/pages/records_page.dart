@@ -223,7 +223,7 @@ class _TravelRecordsPageState extends State<TravelRecordsPage> {
 
           for (int i=0; i<record.path.length; i++) {
 
-            print("objectlist of path $i ---- ${record.path[i].lat}");
+            // print("objectlist of path $i ---- ${record.path[i].lat}");
 
           }
           Navigator.push(context, MaterialPageRoute(builder: (c) =>

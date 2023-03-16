@@ -19,8 +19,8 @@ class SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   var _visible = true;
 
-  late AnimationController animationController;
-  late Animation<double> animation;
+  // late AnimationController animationController;
+  // late Animation<double> animation;
 
   startTime() async {
     final docDir = await getApplicationDocumentsDirectory();
@@ -50,13 +50,13 @@ class SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    animationController = new AnimationController(
-        vsync: this, duration: new Duration(seconds: 3));
-    animation =
-    new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
-
-    animation.addListener(() => this.setState(() {}));
-    animationController.forward();
+    // animationController = new AnimationController(
+    //     vsync: this, duration: new Duration(seconds: 3));
+    // animation =
+    // new CurvedAnimation(parent: animationController, curve: Curves.easeOut);
+    //
+    // animation.addListener(() => this.setState(() {}));
+    // animationController.forward();
 
     setState(() {
       _visible = !_visible;
