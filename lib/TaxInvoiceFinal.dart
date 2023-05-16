@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fg_glass_app/Dashboard.dart';
 import 'package:flutter_fg_glass_app/TaxInvoice.dart';
 import 'package:flutter_fg_glass_app/TaxInvoicePieChart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'DeliveryChallanFinal.dart';
 import 'Deliveryschedule.dart';
 import 'IssueRaised.dart';
@@ -12,6 +13,8 @@ import 'QualityComplaint.dart';
 import 'StatusTimeline.dart';
 import 'globalVariables.dart' as globals;
 import 'package:intl/intl.dart';
+
+import 'login.dart';
 
 class TaxInvoiceFinal extends StatefulWidget {
   @override
@@ -321,6 +324,12 @@ class TaxInvoiceFinalState extends State<TaxInvoiceFinal> {
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w800)),
+                    onTap: () async {
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      await _prefs.clear();
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+                          LoginPage()), (Route<dynamic> route) => false);
+                    },
                   ),
                 ],
               ),

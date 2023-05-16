@@ -34,10 +34,11 @@ class _LoginPageState extends State<LoginPage> {
     print("isMpin $isMpin");
     final response = await post(
       // old
-      // Uri.parse('https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLogin'),
+      // Uri.parse('${Connections.customerUrl}ValidateLogin'),
 
       // new
-        Uri.parse('https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLoginUser'),
+      //   Uri.parse('${Connections.customerUrl}ValidateLoginUser'),
+        Uri.parse('https://fgapi.ddplapps.com/api/CustomerAPI/ValidateLoginUser'),
         headers: <String, String>{
           'Accept': 'application/json',
         },

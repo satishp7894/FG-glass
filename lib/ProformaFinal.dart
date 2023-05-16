@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:http/http.dart';
 import 'globalVariables.dart' as globals;
 
@@ -15,8 +16,8 @@ class ProformaFinalState extends State<ProformaFinal> {
 
   Future<List<ProformaData>> createLoginState(int custId) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetPIAgainstCustomer?custID=$custId'));
-    print('https://fgapi.digidisruptors.in/api/CustomerAPI/GetPIAgainstCustomer?custID=$custId');
+        '${Connections.customerUrl}GetPIAgainstCustomer?custID=$custId'));
+    print('${Connections.customerUrl}GetPIAgainstCustomer?custID=$custId');
 
     if (response.statusCode == 200) {
       print(response.body);

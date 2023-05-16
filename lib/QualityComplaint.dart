@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_fg_glass_app/Dashboard.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'DeliveryChallanFinal.dart';
 import 'Deliveryschedule.dart';
 import 'IssueRaised.dart';
@@ -13,6 +15,7 @@ import 'ProjectsFinal.dart';
 import 'StatusTimeline.dart';
 import 'TaxInvoiceFinal.dart';
 import 'globalVariables.dart' as globals;
+import 'login.dart';
 
 class QualityComplaint extends StatefulWidget {
   @override
@@ -24,7 +27,7 @@ class QualityComplaintState extends State<QualityComplaint> {
 
   Future<List<ProformaData>> createLoginState(int custId) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetQualityComplaintAgainstCustomer?custID=$custId'));
+        '${Connections.customerUrl}GetQualityComplaintAgainstCustomer?custID=$custId'));
 
     if (response.statusCode == 200) {
       print(response.body);
@@ -304,6 +307,12 @@ class QualityComplaintState extends State<QualityComplaint> {
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w800)),
+                    onTap: () async {
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      await _prefs.clear();
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+                          LoginPage()), (Route<dynamic> route) => false);
+                    },
                   ),
                 ],
               ),

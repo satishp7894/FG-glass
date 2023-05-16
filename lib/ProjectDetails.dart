@@ -6,8 +6,10 @@ import 'package:flutter_fg_glass_app/DCProject.dart';
 import 'package:flutter_fg_glass_app/Dashboard.dart';
 import 'package:flutter_fg_glass_app/ProjectsPieChart.dart';
 import 'package:flutter_fg_glass_app/TIProject.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:http/http.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'DeliveryChallanFinal.dart';
 import 'Deliveryschedule.dart';
 import 'IssueRaised.dart';
@@ -19,6 +21,7 @@ import 'QualityComplaint.dart';
 import 'StatusTimeline.dart';
 import 'TaxInvoiceFinal.dart';
 import 'globalVariables.dart' as globals;
+import 'login.dart';
 
 class ProjectDetails extends StatefulWidget {
   @override
@@ -31,7 +34,7 @@ class ProjectDetailsState extends State<ProjectDetails> {
   Future<List<ProjectDetailData>> createLoginState(
       int custId, int projId) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI//GetPIAgainstProjectAndCustomer?custID=$custId&projectID=$projId'));
+        '${Connections.customerUrl}/GetPIAgainstProjectAndCustomer?custID=$custId&projectID=$projId'));
 
     if (response.statusCode == 200) {
       print(response.body);
@@ -335,6 +338,12 @@ class ProjectDetailsState extends State<ProjectDetails> {
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w800)),
+                    onTap: () async {
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      await _prefs.clear();
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+                          LoginPage()), (Route<dynamic> route) => false);
+                    },
                   ),
                 ],
               ),

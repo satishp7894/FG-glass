@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
 import 'globalVariables.dart' as globals;
@@ -19,7 +20,7 @@ class TaxInvoiceState extends State<TaxInvoice> {
 
   Future<Product> fetchAlbum(int custId, String fromDate, String toDate) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetTIAgainstCustomer?custID=$custId&fromDate=$fromDate&toDate=$toDate'));
+        '${Connections.customerUrl}GetTIAgainstCustomer?custID=$custId&fromDate=$fromDate&toDate=$toDate'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
@@ -34,7 +35,7 @@ class TaxInvoiceState extends State<TaxInvoice> {
 
   createLoginState(int custId, String fromDate, String toDate) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetTIAgainstCustomer?custID=$custId&fromDate=$fromDate&toDate=$toDate'));
+        '${Connections.customerUrl}GetTIAgainstCustomer?custID=$custId&fromDate=$fromDate&toDate=$toDate'));
 
     if (response.statusCode == 200) {
       print(response.body);
@@ -221,7 +222,6 @@ class TaxInvoiceState extends State<TaxInvoice> {
                                             textAlign: TextAlign.left,
                                           ),
                                         ),
-
                                         Pinned.fromPins(
                                           Pin(size: 200.0, start: 50),
                                           Pin(size: 19.0, start: 90),
@@ -259,7 +259,6 @@ class TaxInvoiceState extends State<TaxInvoice> {
                                             textAlign: TextAlign.left,
                                           ),
                                         ),
-
                                         Pinned.fromPins(
                                           Pin(size: 250.0, start: 50),
                                           Pin(size: 19.0, start: 120),

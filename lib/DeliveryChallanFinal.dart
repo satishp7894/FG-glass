@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fg_glass_app/Dashboard.dart';
 import 'package:flutter_fg_glass_app/DeliveryChallan.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Deliveryschedule.dart';
 import 'IssueRaised.dart';
 import 'Orders.dart';
@@ -11,6 +12,8 @@ import 'StatusTimeline.dart';
 import 'TaxInvoiceFinal.dart';
 import 'globalVariables.dart' as globals;
 import 'package:intl/intl.dart';
+
+import 'login.dart';
 
 class deliveryChallan extends StatefulWidget {
   @override
@@ -261,6 +264,12 @@ class deliveryChallanState extends State<deliveryChallan> {
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w800)),
+                    onTap: () async {
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      await _prefs.clear();
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+                          LoginPage()), (Route<dynamic> route) => false);
+                    },
 
                   ),
 

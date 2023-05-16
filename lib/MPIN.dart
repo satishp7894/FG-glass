@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_fg_glass_app/sales/pages/home_page.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:adobe_xd/page_link.dart';
 import './login.dart';
@@ -32,10 +33,11 @@ class _MPINState extends State<MPIN> {
       String userId) async {
     final response = await post(
       // old
-      // Uri.parse('https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLogin'),
+      // Uri.parse('${Connections.customerUrl}ValidateLogin'),
 
       // new
-        Uri.parse('https://fgapi.digidisruptors.in/api/CustomerAPI/ValidateLoginUser'),
+      //   Uri.parse('${Connections.customerUrl}ValidateLoginUser'),
+        Uri.parse('${Connections.customerUrl}ValidateLoginUser'),
         headers: <String, String>{
           'Accept': 'application/json',
         },
@@ -55,8 +57,8 @@ class _MPINState extends State<MPIN> {
       print("results['LogType'] ================== > ${results['LogType']}");
 
       if(results['LogType'] == "Customer"){
-        globals.custId = results['CustID'];
-        print(results['CustID']);
+        globals.custId = results['LogID'];
+        print(results['LogID']);
         // Navigator.pushReplacement(context,
         //     MaterialPageRoute(builder: (BuildContext ctx) => Dashboard()));
 

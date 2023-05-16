@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fg_glass_app/sales/pages/records_page.dart';
-import 'package:flutter_fg_glass_app/sales/pages/sales_person_view_page.dart';
-
 import '../../utils/apptheme.dart';
 import 'map_page.dart';
 
 class MyHome extends StatefulWidget {
-
   const MyHome({Key? key}) : super(key: key);
+
   @override
   _MyHomeState createState() => _MyHomeState();
 }
@@ -15,7 +13,8 @@ class MyHome extends StatefulWidget {
 class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(length: 2,
+    return DefaultTabController(
+      length: 2,
       child: WillPopScope(
         onWillPop: () {
           // Alerts.showExitAlert(context);
@@ -26,7 +25,7 @@ class _MyHomeState extends State<MyHome> {
           body: TabBarView(
             physics: const NeverScrollableScrollPhysics(),
             children: [
-             MapPage(),
+              MapPage(),
               TravelRecordsPage(),
             ],
           ),
@@ -36,7 +35,8 @@ class _MyHomeState extends State<MyHome> {
   }
 
   Widget menu() {
-    return Container(height: 60,
+    return Container(
+      height: 60,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -66,5 +66,4 @@ class _MyHomeState extends State<MyHome> {
       ),
     );
   }
-
 }

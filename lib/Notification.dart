@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fg_glass_app/Dashboard.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:http/http.dart';
 import 'globalVariables.dart' as globals;
 
@@ -14,8 +15,8 @@ class NotificationData extends StatefulWidget {
 
 Future<List<NotificationRes>> createLoginState(int custId) async {
   final response = await post(Uri.parse(
-      'https://fgapi.digidisruptors.in/api/CustomerAPI/GetCustwiseTodaysNotification?custID=$custId'));
-  print('https://fgapi.digidisruptors.in/api/CustomerAPI/GetCustwiseTodaysNotification?custID=$custId');
+      '${Connections.customerUrl}GetCustwiseTodaysNotification?custID=$custId'));
+  print('${Connections.customerUrl}GetCustwiseTodaysNotification?custID=$custId');
 
   if (response.statusCode == 200) {
     print(response.body);

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
@@ -18,7 +19,7 @@ class DeliveyChallanState extends State<DeliveyChallan> {
 
   Future<Product> fetchAlbum(int custId, String fromDate, String toDate) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetDCAgainstCustomer?custID=$custId&fromDate=$fromDate&toDate=$toDate'));
+        '${Connections.customerUrl}GetDCAgainstCustomer?custID=$custId&fromDate=$fromDate&toDate=$toDate'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
@@ -33,7 +34,7 @@ class DeliveyChallanState extends State<DeliveyChallan> {
 
   createLoginState(int custId, String fromDate, String toDate) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetDCAgainstCustomer?custID=$custId&fromDate=$fromDate&toDate=$toDate'));
+        '${Connections.customerUrl}GetDCAgainstCustomer?custID=$custId&fromDate=$fromDate&toDate=$toDate'));
 
     if (response.statusCode == 200) {
       print(response.body);

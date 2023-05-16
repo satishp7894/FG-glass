@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_fg_glass_app/OrderStatus.dart';
 import 'package:flutter_fg_glass_app/OrdersPieChart.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:http/http.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +20,7 @@ import 'QualityComplaint.dart';
 import 'StatusTimeline.dart';
 import 'TaxInvoiceFinal.dart';
 import 'globalVariables.dart' as globals;
+import 'login.dart';
 
 class Orders extends StatefulWidget {
   @override
@@ -52,7 +54,7 @@ class OrdersState extends State<Orders> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final custid = prefs.getInt('CustID') ?? '';
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetOrderofGivenDate?orderDate=$date&custID=$custId'));
+        '${Connections.customerUrl}GetOrderofGivenDate?orderDate=$date&custID=$custId'));
 
     if (response.statusCode == 200) {
       print(response.body);
@@ -67,7 +69,7 @@ class OrdersState extends State<Orders> {
   Future<List<OrderDateData>> selectOrderDate(
       String date, int custId, String type) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetActiveDatesForOrders?orderDate=$date&custID=$custId&type=$type'));
+        '${Connections.customerUrl}GetActiveDatesForOrders?orderDate=$date&custID=$custId&type=$type'));
 
     if (response.statusCode == 200) {
       print(response.body);
@@ -382,6 +384,12 @@ class OrdersState extends State<Orders> {
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w800)),
+                    onTap: () async {
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      await _prefs.clear();
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+                          LoginPage()), (Route<dynamic> route) => false);
+                    },
                   ),
                 ],
               ),

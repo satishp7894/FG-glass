@@ -18,6 +18,7 @@ import 'QualityComplaint.dart';
 import 'StatusTimeline.dart';
 import 'TaxInvoiceFinal.dart';
 import 'globalVariables.dart' as globals;
+import 'login.dart';
 
 class PIDate extends StatefulWidget {
   @override
@@ -50,8 +51,8 @@ class PIDateState extends State<PIDate> {
   Future<List<ProformaData>> ProformaDatabyDate(String date, int custId) async {
 
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetPIofGivenDate?PIDate=$date&custID=$custId'));
-    print('https://fgapi.digidisruptors.in/api/CustomerAPI/GetPIofGivenDate?PIDate=$date&custID=$custId');
+        'https://fgapi.ddplapps.com/api/CustomerAPI/GetPIofGivenDate?PIDate=$date&custID=$custId'));
+    print('https://fgapi.ddplapps.com/api/CustomerAPI/GetPIofGivenDate?PIDate=$date&custID=$custId');
     if (response.statusCode == 200) {
       print(response.body);
 
@@ -66,7 +67,7 @@ class PIDateState extends State<PIDate> {
   Future<List<OrderDateData>> selectOrderDate(
       String date, int custId, String type) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetActiveDatesForPI?PIDate=$date&custID=$custId&type=$type'));
+        'https://fgapi.ddplapps.com/api/CustomerAPI/GetActiveDatesForPI?PIDate=$date&custID=$custId&type=$type'));
 
     if (response.statusCode == 200) {
       print(response.body);
@@ -326,6 +327,12 @@ class PIDateState extends State<PIDate> {
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w800)),
+                    onTap: () async {
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      await _prefs.clear();
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+                          LoginPage()), (Route<dynamic> route) => false);
+                    },
 
                   ),
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Dashboard.dart';
 import 'DeliveryChallanFinal.dart';
@@ -12,6 +13,7 @@ import 'ProjectsFinal.dart';
 import 'QualityComplaint.dart';
 import 'StatusTimeline.dart';
 import 'TaxInvoiceFinal.dart';
+import 'login.dart';
 
 class ProjectsPieChartPage extends StatefulWidget {
   const ProjectsPieChartPage({Key? key}) : super(key: key);
@@ -317,6 +319,12 @@ class ProjectsPieChartPageState extends State<ProjectsPieChartPage> {
                           fontSize: 15,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w800)),
+                  onTap: () async {
+                    SharedPreferences _prefs = await SharedPreferences.getInstance();
+                    await _prefs.clear();
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+                        LoginPage()), (Route<dynamic> route) => false);
+                  },
                 ),
               ],
             ),

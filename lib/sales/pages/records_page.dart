@@ -33,7 +33,7 @@ class _TravelRecordsPageState extends State<TravelRecordsPage> {
     return Scaffold(
       appBar: AppBar(
         leading: Align(alignment: Alignment.center,
-            child: Text(' v1.0.4', style: TextStyle(fontSize: 17,
+            child: Text(' v1.0.6', style: TextStyle(fontSize: 17,
                 fontWeight: FontWeight.w500),)),
         centerTitle: true, elevation: 2,
         title: Text('Records'),

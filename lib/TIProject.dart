@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
 import 'globalVariables.dart' as globals;
@@ -19,7 +20,7 @@ class TIProjectState extends State<TIProject> {
 
   Future<Product> fetchAlbum(int custId, int projectId) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetTIAgainstProjectAndCustomer?custID=$custId&projectID=$projectId'));
+        '${Connections.customerUrl}GetTIAgainstProjectAndCustomer?custID=$custId&projectID=$projectId'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
@@ -34,7 +35,7 @@ class TIProjectState extends State<TIProject> {
 
   createLoginState(int custId) async {
     final response = await post(Uri.parse(
-        'https://fgapi.digidisruptors.in/api/CustomerAPI/GetPIAgainstCustomer?custID=$custId'));
+        '${Connections.customerUrl}GetPIAgainstCustomer?custID=$custId'));
 
     if (response.statusCode == 200) {
       print(response.body);

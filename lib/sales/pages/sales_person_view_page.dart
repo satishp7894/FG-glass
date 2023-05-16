@@ -34,9 +34,12 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
     print("_prefs.getInt('UserID') ${
         _prefs.getInt('UserID')
     }");
-    print("Connection.getLocation URL========== > https://fgapi.digidisruptors.in/api/FGCRM/GetSalesPersonData?UserID=${_prefs.getInt('UserID')}");
-    var response = await http.post(Uri.parse("https://fgapi.digidisruptors.in/api/FGCRM/GetSalesPersonData?UserID=${_prefs.getInt('UserID')}"));
-    // var response = await http.post(Uri.parse("https://fgapi.digidisruptors.in/api/FGCRM/GetSalesPersonData?UserID=2"));
+    // print("Connection.getLocation URL========== > https://fgapi.digidisruptors.in/api/FGCRM/GetSalesPersonData?UserID=${_prefs.getInt('UserID')}");
+    // var response = await http.post(Uri.parse("https://fgapi.digidisruptors.in/api/FGCRM/GetSalesPersonData?UserID=${_prefs.getInt('UserID')}"));
+
+    print("Connection.getLocation URL========== > https://fgapi.ddplapps.com/api/FGCRM/GetSalesPersonData?UserID=${_prefs.getInt('UserID')}");
+    var response = await http.post(Uri.parse("https://fgapi.ddplapps.com/api/FGCRM/GetSalesPersonData?UserID=${_prefs.getInt('UserID')}"));
+    // var response = await http.post(Uri.parse("https://fgapi.ddplapps.com/api/FGCRM/GetSalesPersonData?UserID=2"));
     // var results = json.decode(response.body);
     var result = json.decode(response.body);
     print('response == $result  ${response.body}');
@@ -59,7 +62,7 @@ class _SalesPersonViewScreenState extends State<SalesPersonViewScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: const Align(alignment: Alignment.center,
-            child: const Text(' v1.0.4', style: const TextStyle(fontSize: 17,
+            child: const Text(' v1.0.6', style: const TextStyle(fontSize: 17,
                 fontWeight: FontWeight.w500),)),
         centerTitle: true, elevation: 2,
         title: Image.asset('assets/images/infinity.jpg', height: 36, fit: BoxFit.contain,),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_fg_glass_app/Notification.dart';
 import 'package:flutter_fg_glass_app/globalVariables.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart';
@@ -31,8 +32,8 @@ class Dash1State extends State<Dash1> {
 
    Future<List<NotificationRes>> createLoginState(int custId) async {
      final response = await post(Uri.parse(
-         'https://fgapi.digidisruptors.in/api/CustomerAPI/GetCustwiseTodaysNotification?custID=$custId'));
-     print('https://fgapi.digidisruptors.in/api/CustomerAPI/GetCustwiseTodaysNotification?custID=$custId');
+         '${Connections.customerUrl}GetCustwiseTodaysNotification?custID=$custId'));
+     print('${Connections.customerUrl}GetCustwiseTodaysNotification?custID=$custId');
 
      if (response.statusCode == 200) {
        print(response.body);

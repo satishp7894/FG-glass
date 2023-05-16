@@ -4,6 +4,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_fg_glass_app/Dashboard.dart';
+import 'package:flutter_fg_glass_app/utils/connections.dart';
 
 import 'package:http/http.dart';
 import 'package:adobe_xd/page_link.dart';
@@ -23,6 +24,8 @@ import 'TaxInvoiceFinal.dart';
 import 'globalVariables.dart' as globals;
 import 'package:intl/intl.dart';
 import 'package:mailer/mailer.dart';
+
+import 'login.dart';
 
 class IssueRaised extends StatefulWidget {
   @override
@@ -44,7 +47,7 @@ class IssueRaisedState extends State<IssueRaised> {
   fetchData() async {
     var response = await post(
       Uri.parse(
-          'https://fgapi.digidisruptors.in/api/CustomerAPI/GetIssueCategory'),
+          '${Connections.customerUrl}GetIssueCategory'),
       headers: <String, String>{
         'Accept': 'application/json',
       },
@@ -82,7 +85,7 @@ class IssueRaisedState extends State<IssueRaised> {
   createLoginState(String categoryId, String desc, String custId) async {
     final response = await post(
         Uri.parse(
-            'https://fgapi.digidisruptors.in/api/CustomerAPI/AddCustomerIssue'),
+            '${Connections.customerUrl}AddCustomerIssue'),
         headers: <String, String>{
           'Accept': 'application/json',
         },
@@ -375,6 +378,12 @@ class IssueRaisedState extends State<IssueRaised> {
                             fontSize: 15,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w800)),
+                    onTap: () async {
+                      SharedPreferences _prefs = await SharedPreferences.getInstance();
+                      await _prefs.clear();
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>
+                          LoginPage()), (Route<dynamic> route) => false);
+                    },
                   ),
                 ],
               ),

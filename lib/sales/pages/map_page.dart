@@ -145,6 +145,12 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     print("_prefs.getInt('UserID') ${
         _prefs.getInt('UserID')
     }");
+    print("location ============= ${
+        location
+    }");
+    print("URI  ============= ${
+        Connections.addMark
+    }");
     var response = await http.post(Uri.parse(Connections.addMark), body: {
       'Location': '$location',
       'Latitude': '${markPosition.latitude}',
@@ -1159,7 +1165,7 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
     return Scaffold(
       appBar: AppBar(
         leading: const Align(alignment: Alignment.center,
-            child: const Text(' v1.0.4', style: const TextStyle(fontSize: 17,
+            child: const Text(' v1.0.6', style: const TextStyle(fontSize: 17,
                 fontWeight: FontWeight.w500),)),
         centerTitle: true, elevation: 2,
         title: Image.asset('assets/images/infinity.jpg', height: 36, fit: BoxFit.contain,),
